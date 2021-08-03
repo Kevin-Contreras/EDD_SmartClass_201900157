@@ -112,12 +112,12 @@ public:
         int variableReporte;
         do
         {
-           cout<<"******************SUBMENU REPORTES***************"<<endl;
+            cout<<"******************SUBMENU REPORTES***************"<<endl;
             cout<<"1- LISTA USUARIOS"<<endl;
             cout<<"2- LINEALIZACION TAREAS"<<endl;
-          cout<<"3- SALIR"<<endl;
-          cout<<"INGRESE UN NUMERO PARA CONTINUAR"<<endl;
-          cin>> variableReporte;
+            cout<<"3- SALIR"<<endl;
+            cout<<"INGRESE UN NUMERO PARA CONTINUAR"<<endl;
+            cin>> variableReporte;
           switch (variableReporte)
           {
           case 1:
