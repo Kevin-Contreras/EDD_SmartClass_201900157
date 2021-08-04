@@ -1,11 +1,14 @@
 #include <iostream>
+#include "./LECTURA.cpp"
 using namespace std;
 
 
 class Menu{
 public:
   Menu(){
+
     int numeroMenu;
+     
     do{
       cout<<"******************MENU***************"<<endl;
       cout<<"1- CARGA DE USUARIO"<<endl;
@@ -21,6 +24,9 @@ public:
         char pathEstudiante[250];
         cin>>pathEstudiante;
         //COLOCAR CODIGO AQUI 
+        Leer lecturaEstudiantes;
+        lecturaEstudiantes.leerArchivo(string(pathEstudiante));
+
         
         
         break;
@@ -78,9 +84,9 @@ public:
             cout<<"1- INGRESAR"<<endl;
             cout<<"2- MODIFICAR"<<endl;
             cout<<"3- ELIMMINAR" <<endl;
-          cout<<"4- SALIR"<<endl;
-          cout<<"INGRESE UN NUMERO PARA CONTINUAR"<<endl;
-          cin>> submenu3;
+            cout<<"4- SALIR"<<endl;
+            cout<<"INGRESE UN NUMERO PARA CONTINUAR"<<endl;
+            cin>> submenu3;
           switch (submenu3)
           {
           case 1:
