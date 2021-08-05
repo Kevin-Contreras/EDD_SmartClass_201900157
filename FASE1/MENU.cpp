@@ -8,7 +8,7 @@ public:
   Menu(){
 
     int numeroMenu;
-     
+    Leer lecturaEstudiantes;
     do{
       cout<<"******************MENU***************"<<endl;
       cout<<"1- CARGA DE USUARIO"<<endl;
@@ -18,17 +18,14 @@ public:
       cout<<"5- SALIR"<<endl;
       cout<<"INGRESE EL NUMERO PARA CONTINUAR:"<<endl;
       cin>>numeroMenu;
+      
       switch(numeroMenu){
         case 1:
         cout<<"---> INGRESE LA RUTA DEL ARCHIVO DEL USUARIO"<<endl;
         char pathEstudiante[250];
         cin>>pathEstudiante;
         //COLOCAR CODIGO AQUI 
-        Leer lecturaEstudiantes;
         lecturaEstudiantes.leerArchivo(string(pathEstudiante));
-
-        
-        
         break;
         case 2:
         char pathTask[250];
