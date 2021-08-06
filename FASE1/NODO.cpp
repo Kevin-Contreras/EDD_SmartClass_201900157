@@ -246,7 +246,7 @@ void buscarNodo(string dpi){
 	anteriorKK = NULL;
 	bool encontrado = false;
 	int nodoBuscado = 0;
-	cout << "Ingrese el dato del nodo a Buscar para Eliminar: ";
+	
 	
 	if(primer!=NULL){
 		do{
