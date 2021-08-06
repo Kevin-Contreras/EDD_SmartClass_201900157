@@ -3,11 +3,14 @@
 #include <cstring>
 #include <sstream>
 #include <regex>
+#include "./NODO.cpp"
 using namespace std;
 
 class Leer{
   public: string nombre;
+  public: ListaCircularDoble lista;
   public:
+  
    void leerArchivo(string url){
       string archivoCadena;
       string archivoCadena2;
@@ -22,6 +25,7 @@ class Leer{
       string edad;
       string correo;
       //----------------
+      string coma;
       fstream archivo;
       int contador=0;
       int contador2=0;
@@ -34,6 +38,8 @@ class Leer{
       };
       while (getline(archivo,archivoCadena))
       {
+        coma = archivoCadena+",";
+        lista.ingresar_datos(coma);
         contador3++;
         if(contador3!=1){
            stringstream  input_stringstream(archivoCadena);
@@ -70,6 +76,7 @@ class Leer{
        archivoCadena2 += archivoCadena+","+"\n"; 
         }
       };
+      
       string carnets[contadorEstudiantes];
       string dpis[contadorEstudiantes];
       string nombres[contadorEstudiantes];
@@ -88,7 +95,7 @@ class Leer{
       int contadorCarnet = 0;
       int contadorDpi = 0;
       int contadorCorreo = 0;
-      int totalErrores=0;
+      
 
       while (getline(input_stringstream,carnetValor,',')&& getline(input_stringstreams,dpivalor,',') && getline(correoStream,correoValor,','))
       {
@@ -112,8 +119,8 @@ class Leer{
           cout<<"el correo no se encuentra bien escrito"<<endl;
         }
       }
-      totalErrores = contadorCarnet+contadorCorreo+contadorDpi;
-      int CantidadErrores[totalErrores];
+      
+      
       
     }
   

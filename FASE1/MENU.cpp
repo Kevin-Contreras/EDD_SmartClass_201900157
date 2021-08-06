@@ -1,14 +1,27 @@
 #include <iostream>
 #include "./LECTURA.cpp"
+#include <string.h>
+#include <cstring>
 using namespace std;
 
 
 class Menu{
 public:
   Menu(){
-
+    string carnetAgregar;
+    string dpiAgregar;
+    string nombreAgregar;
+    string carreraAgregar;
+    string passwordAgregar;
+    string creditosAgregar;
+    string edadAgregar;
+    string correoAgregar;
+    string total;
+    string buscardpi;
+    string buscardpi2;
     int numeroMenu;
     Leer lecturaEstudiantes;
+
     do{
       cout<<"******************MENU***************"<<endl;
       cout<<"1- CARGA DE USUARIO"<<endl;
@@ -57,15 +70,43 @@ public:
           switch (submenu2)
           {
           case 1:
-            cout<<"SE INGRESARON LOS DATOS DEL ESTUDIANTE"<<endl;
-            //COLOCAR CODIGO AQUI 
+            
+            cout<<"INGRESE LOS DATOS DEL ESTUDIANTE"<<endl;
+            cout<<"CARNET: ";
+            cin>>carnetAgregar;
+            cout<<"DPI: ";
+            cin>>dpiAgregar;
+            cout<<"NOMBRE: ";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            getline(cin,nombreAgregar);
+            cout<<"CARRERA: ";
+           
+            getline(cin,carreraAgregar);
+            cout<<"PASSWORD: ";
+            cin>>passwordAgregar;
+            cout<<"CREDITOS: ";
+            cin>>creditosAgregar;
+            cout<<"EDAD: ";
+            cin>>edadAgregar;
+            cout<<"CORREO: ";
+            cin>>correoAgregar;
+            total = carnetAgregar+","+dpiAgregar+","+nombreAgregar+","+carreraAgregar+","+passwordAgregar+","+creditosAgregar+","+edadAgregar+","+correoAgregar+",";
+            lecturaEstudiantes.lista.ingresar_datos(total);
+             lecturaEstudiantes.lista.mostrar();
+
             break;
           case 2:
-          cout<<"SE MODIFICARON LOS DATOS DEL ESTUDIANTE"<<endl;
+          cout<<"INGRESE EL DPI PARA PODER REALIZAR LOS CAMBIOS"<<endl;
+          cin>>buscardpi;
+
+          lecturaEstudiantes.lista.modificarNodo(buscardpi);
+          lecturaEstudiantes.lista.mostrar();
           //COLOCAR CODIGO AQUI 
           break;
           case 3:
-          cout<<"SE ELIMINARON LOS DATOS DEL ESTUDIANTE"<<endl;
+          cout<<"INGRESE EL DPI PARA PODER ELIMINAR EL DATO"<<endl;
+          cin>>buscardpi2;
+          lecturaEstudiantes.lista.Eliminar(buscardpi2);
           //COLOCAR CODIGO AQUI 
           break;  
           case 4:
