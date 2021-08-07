@@ -1,13 +1,18 @@
 #include <iostream>
 #include "./LECTURA.cpp"
+#include "./LECTURATAREA.cpp"
+#include "./separacion.cpp"
 #include <string.h>
 #include <cstring>
+#include<windows.h>
 using namespace std;
 
 
 class Menu{
 public:
   Menu(){
+    SetConsoleOutputCP(CP_UTF8);
+    int s = 0;
     string carnetAgregar;
     string dpiAgregar;
     string nombreAgregar;
@@ -21,6 +26,8 @@ public:
     string buscardpi2;
     int numeroMenu;
     Leer lecturaEstudiantes;
+    LeerTarea lecturaTarea;
+    sepa nose;
 
     do{
       cout<<"******************MENU***************"<<endl;
@@ -45,6 +52,11 @@ public:
         cout<<"SELECCIONO EL SEGUNDO OPCION"<<endl;
         cin>> pathTask;
         //COLOCAR CODIGO AQUI 
+          s=1;
+             lecturaTarea.leerArchivo(string(pathTask),lecturaEstudiantes.carnet);
+             
+          
+       
         break;
         case 3:
          int submenu;
@@ -92,8 +104,15 @@ public:
             cin>>correoAgregar;
             total = carnetAgregar+","+dpiAgregar+","+nombreAgregar+","+carreraAgregar+","+passwordAgregar+","+creditosAgregar+","+edadAgregar+","+correoAgregar+",";
             lecturaEstudiantes.lista.ingresar_datos(total);
-             lecturaEstudiantes.lista.mostrar();
-
+            lecturaEstudiantes.lista.mostrar();
+             lecturaEstudiantes.lista.copia();
+          nose.separar(lecturaEstudiantes.lista.datosTodos);
+           if(s==1){
+            lecturaTarea.leerArchivo(string(pathTask),nose.carnet);
+            lecturaEstudiantes.lista.datosTodos="";
+            nose.carnet="";
+          }
+            
             break;
           case 2:
           cout<<"INGRESE EL DPI PARA PODER REALIZAR LOS CAMBIOS"<<endl;
@@ -101,13 +120,30 @@ public:
 
           lecturaEstudiantes.lista.modificarNodo(buscardpi);
           lecturaEstudiantes.lista.mostrar();
+          lecturaEstudiantes.lista.copia();
+          nose.separar(lecturaEstudiantes.lista.datosTodos);
+          if(s==1){
+            lecturaTarea.leerArchivo(string(pathTask),nose.carnet);
+             nose.carnet="";
+             lecturaEstudiantes.lista.datosTodos="";
+          };
+          
           //COLOCAR CODIGO AQUI 
           break;
           case 3:
           cout<<"INGRESE EL DPI PARA PODER ELIMINAR EL DATO"<<endl;
           cin>>buscardpi2;
           lecturaEstudiantes.lista.Eliminar(buscardpi2);
-          //COLOCAR CODIGO AQUI 
+          lecturaEstudiantes.lista.copia();
+          nose.separar(lecturaEstudiantes.lista.datosTodos);
+           if(s==1){
+            lecturaTarea.leerArchivo(string(pathTask),nose.carnet);
+            nose.carnet="";
+             lecturaEstudiantes.lista.datosTodos="";
+           
+          }
+          //COLOCAR CODIGO AQUI
+           
           break;  
           case 4:
           break;

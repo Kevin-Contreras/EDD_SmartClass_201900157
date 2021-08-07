@@ -4,19 +4,22 @@
 #include <sstream>
 #include <regex>
 #include "./NODO.cpp"
+#include<windows.h>
 using namespace std;
 
 class Leer{
+ 
   public: string nombre;
   public: ListaCircularDoble lista;
   public:
-  
+   string carnet;
    void leerArchivo(string url){
+      SetConsoleOutputCP(CP_UTF8);
       string archivoCadena;
       string archivoCadena2;
       string archivocadena4;
       //VARIABLES CON LOS VALORES
-      string carnet;
+     
       string dpi;
       string nombre;
       string carrera;
@@ -77,14 +80,7 @@ class Leer{
         }
       };
       
-      string carnets[contadorEstudiantes];
-      string dpis[contadorEstudiantes];
-      string nombres[contadorEstudiantes];
-      string carreras[contadorEstudiantes];
-      string password[contadorEstudiantes];
-      string creditoss[contadorEstudiantes];
-      string edads[contadorEstudiantes];
-      string correos[contadorEstudiantes];
+      
       stringstream  input_stringstreams(dpi);
       stringstream  input_stringstream(carnet);
       stringstream  correoStream(correo);
@@ -123,5 +119,6 @@ class Leer{
       
       
     }
+    
   
 };

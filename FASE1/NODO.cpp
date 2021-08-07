@@ -1,16 +1,19 @@
 #include <iostream>
 #include <cstring>
 using namespace std;
-class ListaCircularDoble{
-public:
-struct nodo{
+class nodo{
+  public:
   string dato;
   nodo *siguiente;
   nodo *anterior;
-
+ 
 };
-nodo *primer = NULL;
-nodo*ultimo = NULL;
+class ListaCircularDoble{
+public:
+nodo*nuev = new nodo();
+nodo * primer = NULL;
+nodo* ultimo = NULL;
+string datosTodos;
 
 
 void ingresar_datos(string datos){
@@ -31,6 +34,7 @@ void ingresar_datos(string datos){
     primer->anterior=ultimo;
   }
   
+  
 }
 void mostrar(){
   nodo * aux = new nodo();
@@ -44,6 +48,18 @@ void mostrar(){
     
   }else{
     cout<<"la lista esta vacia";
+  }
+};
+void copia(){
+  nodo * auxs = new nodo();
+  auxs = primer;
+  if(primer != NULL){
+    do
+    {
+     datosTodos+=auxs->dato+"\n";
+     auxs=auxs->siguiente;
+    } while (auxs != primer);
+    
   }
 };
 void buscarNodo(string dpi){
@@ -93,6 +109,7 @@ void buscarNodo(string dpi){
   string correoNuevo;
   if(primer != NULL){
     do{
+     
       if(actual->dato.find(dpi)!=-1){
         stringstream  datobuscado(actual->dato);
         stringstream  datobuscado2(actual->dato);
@@ -222,10 +239,13 @@ void buscarNodo(string dpi){
         }
         todos = carnetNuevo+","+dpiNuevo+","+nombreNuevo+","+carreraNuevo+","+contraNuevo+","+creditosNuevo+","+""+edadNuevo+","+correoNuevo+",";
         actual->dato=todos;
+        
         encontrado = true;
       }
       actual = actual->siguiente;
+     
     }while(actual!=primer && encontrado != true);
+    
     if(!encontrado){
       cout<<"nodo no encontrado";
 
