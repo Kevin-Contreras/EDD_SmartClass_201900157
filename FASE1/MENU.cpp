@@ -104,7 +104,6 @@ public:
             cin>>correoAgregar;
             total = carnetAgregar+","+dpiAgregar+","+nombreAgregar+","+carreraAgregar+","+passwordAgregar+","+creditosAgregar+","+edadAgregar+","+correoAgregar+",";
             lecturaEstudiantes.lista.ingresar_datos(total);
-            lecturaEstudiantes.lista.mostrar();
              lecturaEstudiantes.lista.copia();
           nose.separar(lecturaEstudiantes.lista.datosTodos);
            if(s==1){
@@ -119,7 +118,7 @@ public:
           cin>>buscardpi;
 
           lecturaEstudiantes.lista.modificarNodo(buscardpi);
-          lecturaEstudiantes.lista.mostrar();
+          
           lecturaEstudiantes.lista.copia();
           nose.separar(lecturaEstudiantes.lista.datosTodos);
           if(s==1){
