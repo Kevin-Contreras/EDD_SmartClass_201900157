@@ -1,5 +1,5 @@
 Mes,Dia,Hora,Carnet,Nombre,Descripcion,Materia,Fecha,Estado
-7,1,8,20170088226,Tarea de Matematica,Realizar la tarea del curso de matemática intermedia 1.,Matemática Intermedia 1,2021/07/01,Incumplido
+1,2,7,20170088226,Tarea de Matematica,Realizar la tarea del curso de matemática intermedia 1.,Matemática Intermedia 1,2021/01/01,Incumplido
 7,1,11,202000786,Tarea de Fisica,Realizar la tarea del curso de Física 1.,Física 1,2021/07/01,Pendiente
 7,14,10,201704186,Tarea de Estadística,Realizar la tarea del curso de Estadística 1.,Estadística 1,2021/07/14,Cumplido
 7,14,16,201700886,Codificar en C++,Realizar la tarea del curso de Estructuras de datos,Estructuras de Datos,2021/07/14,Pendiente

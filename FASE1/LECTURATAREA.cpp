@@ -3,17 +3,19 @@
 #include <cstring>
 #include <sstream>
 #include <regex>
+#include "./LISTADOBLE.cpp"
 #include<windows.h>
 using namespace std;
 
 class LeerTarea{
  
   public: string nombre;
-
   public:
-  
+  int id =0;
+  public: ListaDoble listadobleEnlazada;
    void leerArchivo(string url,string carnetsEstudiantes){
       SetConsoleOutputCP(CP_UTF8);
+      
       string archivoCadena;
       string archivoCadena2;
       string archivocadena4;
@@ -33,7 +35,7 @@ class LeerTarea{
       string coma;
       fstream archivo;
       int contador2=0;
-      int id =0;
+      
       archivo.open(url, ios::in);
       if(archivo.fail()){
         cout<<"EL ARCHIVO NO SE PUDO ABRIR";
@@ -148,10 +150,10 @@ class LeerTarea{
      cout<<matrizFecha[i]<<endl;
    }
    
-    //AQUI SE CREO LA MATRIZ PARA REALIZAR EL COLUMN MAJOR (CARNET IMPAR)
     string datoss[12][30][24];
    
     int sol=0;
+     int contadorhora=0;
     for (int i = 0; i < 12; i++){
       for (int j = 0; j <30 ; j++)
       {
@@ -164,10 +166,12 @@ class LeerTarea{
             if(to_string(i+1)+"/"+to_string(j+1)+"/"+to_string(k+1)==matrizFecha[l]){
                cout<<to_string(i+1)+","+to_string(j+1)+","+to_string(k+1)<<endl;
                 datoss[i][j][k]=matrizDatos[l];
+                contadorhora++;
             }else{
               sol++;
               if(sol==id){
-                datoss[i][j][k]="-1";
+                datoss[i][j][k]=string("-1");
+                contadorhora++;
               }
               
             }
@@ -179,7 +183,7 @@ class LeerTarea{
     int u =0;
     
     
-    cout<<datoss[6][0][10]<<endl;
+    cout<<datoss[1][4][11]<<endl;
     string mesValor;
     string diaValor;
     string horaValor;
@@ -187,16 +191,41 @@ class LeerTarea{
     stringstream  streamMes(mes);
     
     
-    int contadorMes;
+    int contadorMes=0;
     int contadordia=0;
-    int contadorhora;
+    
 
-cout<<contadordia<<endl;   
+  
       
-      
+    //AQUI SE CREO LA MATRIZ PARA REALIZAR EL COLUMN MAJOR (CARNET IMPAR)
    
-    //
+    string matrizColumnMajor[contadorhora];
+    
+    
+    for (int i = 0; i < 12; i++){
+      for(int j=0; j<30; j++){
+        for (int k = 0; k < 24; k++)
+        {
+         contadorMes++;
+         //FORMULA PARA COLUMNMAJOR
+         
+          matrizColumnMajor[i+12*(j+30*k)]=datoss[i][j][k];
+        //
+          listadobleEnlazada.insertar( matrizColumnMajor[i+12*(j+30*k)]);
+        }
+        
+      }
+    }
+   
+    cout<<contadorMes<<endl;
+   
+    
+    
+   
+
+    contadorhora=0;
     cout<<carnetsEstudiantes;
+    
     carnetsEstudiantes;
    }
   

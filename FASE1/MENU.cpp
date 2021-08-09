@@ -24,7 +24,18 @@ public:
     string total;
     string buscardpi;
     string buscardpi2;
+    string carnetTarea;
+    string nombreTarea;
+    string descripcion;
+    string materia;
+    string fecha;
+    string estado;
+    string cadenaToda;
     int numeroMenu;
+    int mes;
+    int dia;
+    int c=0;
+    int hora;
     Leer lecturaEstudiantes;
     LeerTarea lecturaTarea;
     sepa nose;
@@ -104,23 +115,22 @@ public:
             cin>>correoAgregar;
             total = carnetAgregar+","+dpiAgregar+","+nombreAgregar+","+carreraAgregar+","+passwordAgregar+","+creditosAgregar+","+edadAgregar+","+correoAgregar+",";
             lecturaEstudiantes.lista.ingresar_datos(total);
-             lecturaEstudiantes.lista.copia();
-          nose.separar(lecturaEstudiantes.lista.datosTodos);
-           if(s==1){
+            lecturaEstudiantes.lista.copia();
+            nose.separar(lecturaEstudiantes.lista.datosTodos);
+            if(s==1){
             lecturaTarea.leerArchivo(string(pathTask),nose.carnet);
             lecturaEstudiantes.lista.datosTodos="";
             nose.carnet="";
-          }
+            }
             
             break;
           case 2:
           cout<<"INGRESE EL DPI PARA PODER REALIZAR LOS CAMBIOS"<<endl;
           cin>>buscardpi;
 
-          lecturaEstudiantes.lista.modificarNodo(buscardpi);
-          
-          lecturaEstudiantes.lista.copia();
-          nose.separar(lecturaEstudiantes.lista.datosTodos);
+            lecturaEstudiantes.lista.modificarNodo(buscardpi);
+            lecturaEstudiantes.lista.copia();
+            nose.separar(lecturaEstudiantes.lista.datosTodos);
           if(s==1){
             lecturaTarea.leerArchivo(string(pathTask),nose.carnet);
              nose.carnet="";
@@ -135,10 +145,10 @@ public:
           lecturaEstudiantes.lista.Eliminar(buscardpi2);
           lecturaEstudiantes.lista.copia();
           nose.separar(lecturaEstudiantes.lista.datosTodos);
-           if(s==1){
-            lecturaTarea.leerArchivo(string(pathTask),nose.carnet);
-            nose.carnet="";
-             lecturaEstudiantes.lista.datosTodos="";
+          if(s==1){
+          lecturaTarea.leerArchivo(string(pathTask),nose.carnet);
+          nose.carnet="";
+          lecturaEstudiantes.lista.datosTodos="";
            
           }
           //COLOCAR CODIGO AQUI
@@ -163,12 +173,40 @@ public:
           switch (submenu3)
           {
           case 1:
+          cadenaToda="";
+           cadenaToda += lecturaTarea.id++;
             cout<<"SE INGRESARON LOS DATOS DE LAS TAREAS"<<endl;
-            //COLOCAR CODIGO AQUI 
+            cout<<"INGRESE EL MES: ";
+            cin>>mes;
+            cout<<"INGRESE EL DIA: ";
+            cin>>dia;
+            cout<<"INGRESE LA HORA: ";
+            cin>>hora;
+            cout<<"INGRESE EL CARNET: ";
+            cin>>carnetTarea;
+             cadenaToda +=","+carnetTarea+",";
+            cout<<"INGRESE EL NOMBRE: ";
+              
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+             getline(cin,nombreTarea);
+             cadenaToda +=nombreTarea+",";
+            cout<<"INGRESE LA DESCRIPCION: ";
+             getline(cin,descripcion);
+             cadenaToda +=descripcion+",";
+            cout<<"INGRESE LA FECHA: ";
+            cin>>fecha;
+            cadenaToda +=fecha+",";
+            cout<<"INGRESE EL ESTADO: ";
+            cin>>estado;
+            cadenaToda +=estado+",";
+           
+            
+          lecturaTarea.listadobleEnlazada.modificarNodo(cadenaToda,(mes-1)*30*24+(dia-1)*24+hora);
+           
             break;
           case 2:
           cout<<"SE MODIFICARON LOS DATOS DE LAS TAREAS"<<endl;
-          //COLOCAR CODIGO AQUI 
+          
           break;
           case 3:
           cout<<"SE ELIMINARON LOS DATOS DE LOS LAS TAREAS"<<endl;

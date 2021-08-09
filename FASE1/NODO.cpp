@@ -10,7 +10,7 @@ class nodo{
 };
 class ListaCircularDoble{
 public:
-nodo*nuev = new nodo();
+
 nodo * primer = NULL;
 nodo* ultimo = NULL;
 string datosTodos;
