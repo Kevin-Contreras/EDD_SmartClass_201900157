@@ -13,6 +13,7 @@ public:
   Menu(){
     SetConsoleOutputCP(CP_UTF8);
     int s = 0;
+    int valorkk=0;
     string carnetAgregar;
     string dpiAgregar;
     string nombreAgregar;
@@ -31,14 +32,18 @@ public:
     string fecha;
     string estado;
     string cadenaToda;
+    string *p;
     int numeroMenu;
     int mes;
+    int idEliminar;
+    int idCambiar;
     int dia;
     int c=0;
     int hora;
     Leer lecturaEstudiantes;
     LeerTarea lecturaTarea;
     sepa nose;
+    string cadena [2];
 
     do{
       cout<<"******************MENU***************"<<endl;
@@ -64,7 +69,13 @@ public:
         cin>> pathTask;
         //COLOCAR CODIGO AQUI 
           s=1;
-             lecturaTarea.leerArchivo(string(pathTask),lecturaEstudiantes.carnet);
+          valorkk=1;
+          p = lecturaTarea.cadenea(string(pathTask),lecturaEstudiantes.carnet);
+          for (int u =0; u<2;u++){
+              cadena[u]=*(p+u);
+          }
+         lecturaTarea.leerArchivo(cadena);
+        lecturaTarea.listadobleEnlazada.desplegar();
              
           
        
@@ -118,9 +129,15 @@ public:
             lecturaEstudiantes.lista.copia();
             nose.separar(lecturaEstudiantes.lista.datosTodos);
             if(s==1){
-            lecturaTarea.leerArchivo(string(pathTask),nose.carnet);
+            lecturaTarea.id=0;
+            p = lecturaTarea.cadenea(string(pathTask),lecturaEstudiantes.carnet);
+            for (int u =0; u<2;u++){
+              cadena[u]=*(p+u);
+              }
+          
             lecturaEstudiantes.lista.datosTodos="";
             nose.carnet="";
+            
             }
             
             break;
@@ -132,9 +149,15 @@ public:
             lecturaEstudiantes.lista.copia();
             nose.separar(lecturaEstudiantes.lista.datosTodos);
           if(s==1){
-            lecturaTarea.leerArchivo(string(pathTask),nose.carnet);
+            lecturaTarea.id=0;
+         
+            p = lecturaTarea.cadenea(string(pathTask),lecturaEstudiantes.carnet);
+            for (int u =0; u<2;u++){
+              cadena[u]=*(p+u);
+            }
              nose.carnet="";
              lecturaEstudiantes.lista.datosTodos="";
+             
           };
           
           //COLOCAR CODIGO AQUI 
@@ -146,9 +169,14 @@ public:
           lecturaEstudiantes.lista.copia();
           nose.separar(lecturaEstudiantes.lista.datosTodos);
           if(s==1){
-          lecturaTarea.leerArchivo(string(pathTask),nose.carnet);
+          lecturaTarea.id=0;
+          p = lecturaTarea.cadenea(string(pathTask),lecturaEstudiantes.carnet);
+          for (int u =0; u<2;u++){
+              cadena[u]=*(p+u);
+          }
           nose.carnet="";
           lecturaEstudiantes.lista.datosTodos="";
+          
            
           }
           //COLOCAR CODIGO AQUI
@@ -174,7 +202,7 @@ public:
           {
           case 1:
           cadenaToda="";
-           cadenaToda += lecturaTarea.id++;
+           cadenaToda += to_string(++lecturaTarea.id);
             cout<<"SE INGRESARON LOS DATOS DE LAS TAREAS"<<endl;
             cout<<"INGRESE EL MES: ";
             cin>>mes;
@@ -199,18 +227,29 @@ public:
             cout<<"INGRESE EL ESTADO: ";
             cin>>estado;
             cadenaToda +=estado+",";
+            lecturaTarea.id--;
+           for (int u=0;u<2;u++){
+              cout<<(u)<<endl;
+           }
            
-            
           lecturaTarea.listadobleEnlazada.modificarNodo(cadenaToda,(mes-1)*30*24+(dia-1)*24+hora);
-           
+           lecturaTarea.listadobleEnlazada.desplegar();
+           cadenaToda="";
             break;
           case 2:
-          cout<<"SE MODIFICARON LOS DATOS DE LAS TAREAS"<<endl;
+          cout<<"COLOCAR EL ID DE LA TAREA"<<endl;
+          cin>>idCambiar;
+          lecturaTarea.listadobleEnlazada.cambiarDatos(idCambiar);
+           cout<<"SE ELIMINARON LOS DATOS DE LOS LAS TAREAS"<<endl; 
+          
           
           break;
           case 3:
-          cout<<"SE ELIMINARON LOS DATOS DE LOS LAS TAREAS"<<endl;
-          //COLOCAR CODIGO AQUI 
+          cout<<"COLOCAR EL ID DE LA TAREA"<<endl;
+          cin>>idEliminar;
+          lecturaTarea.listadobleEnlazada.eliminar(to_string(idEliminar));
+          lecturaTarea.listadobleEnlazada.desplegar();
+          
           break;  
           case 4:
           break;
