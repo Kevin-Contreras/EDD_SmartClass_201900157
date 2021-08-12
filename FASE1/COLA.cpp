@@ -1,0 +1,79 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+class nodoCola{
+  public:
+  string datosCola;
+  nodoCola*siguientes;
+};
+class cola{
+  public:
+  nodoCola*primeros=NULL;
+  nodoCola* ultimos=NULL;
+  void insertar(string datos){
+    nodoCola* nuevo = new nodoCola();
+    nuevo->datosCola=datos;
+    cout<<nuevo->datosCola<<" datos de  la cola"<<endl;
+    if(primeros ==NULL){
+      primeros=nuevo;
+      primeros->siguientes=NULL;
+      ultimos= primeros;
+     
+    }else
+    {
+      ultimos->siguientes=nuevo;
+      nuevo->siguientes=NULL;
+      ultimos=nuevo;
+    }
+     
+  };
+    void eliminar(string eliminarNodo){
+    nodoCola * actuals = new nodoCola();
+    actuals = primeros;
+    nodoCola * anterior = new nodoCola();
+    anterior=NULL;
+    bool encontrado=false;
+    int nodoBuscado = 0;
+    if(primeros!=NULL){
+      while(actuals!=NULL &&  encontrado !=true){
+        if(actuals->datosCola.find(eliminarNodo)!=-1){
+          cout<<"nodo encontrado"<<eliminarNodo;
+          if(actuals ==primeros){
+              primeros=primeros->siguientes;
+          }else if(actuals==ultimos){
+            anterior->siguientes=NULL;
+            ultimos=anterior;
+          }else{
+              anterior->siguientes=actuals->siguientes;
+          }
+          encontrado=true;
+        }
+        anterior = actuals;
+        actuals=actuals->siguientes;
+      }
+      if(!encontrado){
+        cout<<"nodo no encontrado"<<endl;
+      }
+    }else{
+      cout<<"LA COLA ESTA VACIA "<<endl;
+    }
+  }
+  int desplegar(){
+    nodoCola * actual = new nodoCola();
+    actual = primeros;
+    if(primeros!=NULL){
+     
+      while(actual!=NULL){
+        cout<<actual->datosCola<<endl;
+        actual=actual->siguientes;
+      }
+    return 0;
+    }else{
+      cout<<"LA COLA ESTA VACIA "<<endl;
+      return 1;
+    }
+  };
+ 
+
+
+};

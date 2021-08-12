@@ -4,6 +4,7 @@
 #include <sstream>
 #include <regex>
 #include "./LISTADOBLE.cpp"
+#include "./COLA2.cpp"
 #include<windows.h>
 using namespace std;
 
@@ -12,6 +13,7 @@ class LeerTarea{
   public: string nombre;
   public:
   int id =0;
+  cola2 cola;
   public: ListaDoble listadobleEnlazada;
    void leerArchivo(string carnetsEstudiantes[]){
     
@@ -119,6 +121,7 @@ class LeerTarea{
       string archivocadena4;
       string concatenar;
       string concatenar2;
+      string fechaseparada;
       //VARIABLES CON LOS VALORES
       string mes;
       string dia;
@@ -158,6 +161,7 @@ class LeerTarea{
                   cout<<"el mes esta en el intervalo "<<archivocadena4<<endl;
             }else{
               // ENVIAR EL ERROR EN UNA COLA MES
+              cola.insertar("TYPO:TAREA, EL MES NO ESTA EN EL RANGO ADECUADO id: "+ to_string(id));
               cout<<"el mes no esta en el intervalo que se desea ERROR. en el id: "<< id <<endl;
             }
           }
@@ -168,6 +172,7 @@ class LeerTarea{
                   cout<<"el DIA esta en el intervalo "<<archivocadena4<<endl;
             }else{
               // ENVIAR EL ERROR EN UNA COLA MES
+              cola.insertar("TYPO:TAREA, el DIA no esta en el intervalo que se desea ERROR.en el id: "+ to_string(id));
               cout<<"el DIA no esta en el intervalo que se desea ERROR.en el id: "<< id<<endl;
             }
           }
@@ -179,13 +184,20 @@ class LeerTarea{
                   cout<<"la HORA esta en el intervalo "<<archivocadena4<<endl;
             }else{
               // ENVIAR EL ERROR EN UNA COLA MES
+              cola.insertar("TYPO:TAREA, LA HORA no esta en el intervalo que se desea ERROR.en el id: "+ to_string(id));
               cout<<"LA HORA no esta en el intervalo que se desea ERROR.en el id: "<< id<<endl;
             }
           }
           if(contador2==4){
-            
             carnet += archivocadena4+",";
             concatenar2 +=archivocadena4+",";
+            if(archivocadena4.length()==9){
+              
+            }else{
+               cola.insertar("TYPO:TAREA, EL CARNET no tiene la cantidad de numero adecuada ERROR.en el id: "+ to_string(id));
+             
+            }
+            
           }
           if(contador2==5){
             nombreTarea += archivocadena4+",";
@@ -200,13 +212,31 @@ class LeerTarea{
              concatenar2 +=archivocadena4+",";
           }
           regex expReg("^\\d{4}([\\-/.])(0?[1-9]|1[0-2])\\1(3[01]|[12][0-9]|0?[1-9])$");
+          string anio="";
+          string mes="";
+          string diaw="";
+          int contadorfecha =0;
           if(contador2==8){
-            concatenar2 +=archivocadena4+",";
+            stringstream  streamfecha(archivocadena4+"/");
+            while(getline(streamfecha,fechaseparada,'/')){
+              contadorfecha++;
+              if(contadorfecha==1){
+                anio=fechaseparada;
+              }else if (contadorfecha == 2)
+              {
+                mes=fechaseparada+"/";
+              }else if(contadorfecha == 3){
+                diaw=fechaseparada+"/";
+              }
+              
+            }
+            concatenar2 +=diaw+mes+anio+",";
             if(regex_match(archivocadena4,expReg)==true){
               cout<<"la FECHA ESTA BIEN ESCRITA"<<archivocadena4<<endl;
             }else{
               // ENVIAR EL ERROR EN UNA COLA MES
-              cout<<"la fecha no esta bien escrita.en el id: "<< id<<"("<<archivocadena4<<")"<<endl;
+              cola.insertar("TYPO:TAREA, la fecha no esta bien escrita.en el id: "+ to_string(id));
+              
             }
             fecha += archivocadena4+",";
           }

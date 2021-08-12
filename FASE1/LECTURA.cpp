@@ -3,6 +3,7 @@
 #include <cstring>
 #include <sstream>
 #include <regex>
+#include "./COLA.cpp"
 #include "./NODO.cpp"
 #include<windows.h>
 using namespace std;
@@ -13,6 +14,7 @@ class Leer{
   public: ListaCircularDoble lista;
   public:
    string carnet;
+   cola nodoLista;
    void leerArchivo(string url){
       SetConsoleOutputCP(CP_UTF8);
       string archivoCadena;
@@ -99,12 +101,14 @@ class Leer{
           cout<<"EL CARNET ES CORRECTO!!"<<endl;
         }else{
           contadorCarnet++;
+          nodoLista.insertar("TYPO: ESTUDIANTE, EL CARNET: "+carnetValor+" NO ESTA BIEN ESCRITO ID: "+ dpivalor );
           cout<<"Mensaje Error: El numero de Carnet no es correcto"<<endl;
         };
         if(dpivalor.length()==13){
           contadorDpi++;
           cout<<"EL DPI ES CORRECTO!!"<<endl;
         }else{
+          nodoLista.insertar("TYPO: ESTUDIANTE, EL DPI: "+dpivalor+" NO ESTA BIEN ESCRITO ID: "+ dpivalor );
           cout<<"Mensaje Error: El numero de DPI no es correcto"<<endl;
         };
         regex expReg("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
@@ -112,6 +116,7 @@ class Leer{
           cout<<"el correo se encuentra bien escrito"<<endl;
         }else{
           contadorCorreo++;
+          nodoLista.insertar("TYPO: ESTUDIANTE, EL CORREO :"+correoValor+" NO ESTA BIEN ESCRITO ID: "+ dpivalor );
           cout<<"el correo no se encuentra bien escrito"<<endl;
         }
       }

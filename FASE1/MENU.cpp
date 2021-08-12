@@ -76,9 +76,12 @@ public:
           }
          lecturaTarea.leerArchivo(cadena);
         lecturaTarea.listadobleEnlazada.desplegar();
-             
-          
-       
+        for (int i = 0; i < lecturaTarea.cola.desplegar(); i++)
+        {
+          lecturaEstudiantes.nodoLista.insertar(lecturaTarea.cola.datosd(i));
+        }
+        lecturaTarea.cola.eliminar();
+        
         break;
         case 3:
          int submenu;
@@ -159,7 +162,8 @@ public:
              lecturaEstudiantes.lista.datosTodos="";
              
           };
-          
+          lecturaEstudiantes.nodoLista.eliminar(buscardpi);
+        
           //COLOCAR CODIGO AQUI 
           break;
           case 3:
@@ -240,6 +244,7 @@ public:
           cout<<"COLOCAR EL ID DE LA TAREA"<<endl;
           cin>>idCambiar;
           lecturaTarea.listadobleEnlazada.cambiarDatos(idCambiar);
+          lecturaEstudiantes.nodoLista.eliminar("id: "+to_string(idCambiar));
            cout<<"SE ELIMINARON LOS DATOS DE LOS LAS TAREAS"<<endl; 
           
           
@@ -266,7 +271,9 @@ public:
         break;
         case 4:
         int variableReporte;
-        do
+        if(lecturaEstudiantes.nodoLista.desplegar()==1){
+          
+                  do
         {
             cout<<"******************SUBMENU REPORTES***************"<<endl;
             cout<<"1- LISTA USUARIOS"<<endl;
@@ -289,7 +296,12 @@ public:
           }
         } while (variableReporte!=3);
         
+        }else{
+          cout<<"HAY ERRORES NO SE PUEDE GENERAR NINGUN REPORTE"<<endl;
+        }
+
         break;
+
         case 5:
         break;
         default:
