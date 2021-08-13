@@ -4,7 +4,9 @@
 #include "./separacion.cpp"
 #include <string.h>
 #include <cstring>
+#include <bits/stdc++.h>
 #include<windows.h>
+
 using namespace std;
 
 
@@ -14,6 +16,10 @@ public:
     SetConsoleOutputCP(CP_UTF8);
     int s = 0;
     int valorkk=0;
+    int contadorError=0;
+    int contadorEstudiante=0;
+    int contadorTareas=0;
+    int eliminado=0;
     string carnetAgregar;
     string dpiAgregar;
     string nombreAgregar;
@@ -33,6 +39,7 @@ public:
     string estado;
     string cadenaToda;
     string *p;
+    string ruta;
     int numeroMenu;
     int mes;
     int idEliminar;
@@ -44,6 +51,8 @@ public:
     LeerTarea lecturaTarea;
     sepa nose;
     string cadena [2];
+     fstream  archivoEstudiante;
+     fstream archivoTAREA;
 
     do{
       cout<<"******************MENU***************"<<endl;
@@ -246,7 +255,7 @@ public:
           lecturaTarea.listadobleEnlazada.cambiarDatos(idCambiar);
           lecturaEstudiantes.nodoLista.eliminar("id: "+to_string(idCambiar));
            cout<<"SE ELIMINARON LOS DATOS DE LOS LAS TAREAS"<<endl; 
-          
+          eliminado++;
           
           break;
           case 3:
@@ -277,27 +286,128 @@ public:
         {
             cout<<"******************SUBMENU REPORTES***************"<<endl;
             cout<<"1- LISTA USUARIOS"<<endl;
-            cout<<"2- LINEALIZACION TAREAS"<<endl;
-            cout<<"3- SALIR"<<endl;
+            cout<<"2- LISTA TAREAS"<<endl;
+            cout<<"3- BUSQUEDA EN ESTRUCTURA LINEALIZADA"<<endl;
+            cout<<"4- BUSQUEDA DE POSICION EN LISTA ENLAZADA"<<endl;
+            cout<<"5- CODIGO GENERADO"<<endl;
+            cout<<"6- SALIR"<<endl;
             cout<<"INGRESE UN NUMERO PARA CONTINUAR"<<endl;
             cin>> variableReporte;
           switch (variableReporte)
           {
           case 1:
-          cout<<"SE MOSTRO LA LISTA"<<endl;
+          contadorEstudiante++;
+         
+          archivoEstudiante.open("ESTUDIANTES"+to_string(contadorEstudiante)+".dot",ios::out);
+          if(archivoEstudiante.fail()==true){
+            cout<<"EL ARCHIVO NO SE PUDO ABRIR"<<endl;
+          }else{
+            string m1= "";
+            string m2= "";
+            string nosed2="";
+            for (int i = 1; i < lecturaEstudiantes.lista.indice(); i++)
+            {
+                cout<<i<<endl;
+             m1+="a"+to_string(i)+"[ label ="+"\""+lecturaEstudiantes.lista.recorrer(i)+"\""+"]";
+             if(i==1){
+              m2+="a"+to_string(i);
+             }
+             if(i==lecturaEstudiantes.lista.indice()-1){
+                nosed2+="a"+to_string(i)+"->"+m2;
+            }else{
+                nosed2+="a"+to_string(i)+"->";
+            }
+            }
+            archivoEstudiante<<"digraph G {rankdir=\"LR\";subgraph cluster_0 {style=filled;color=green;node [style=filled,color=white];"+m1+nosed2+"[dir=\"both\"];}}";
+             archivoEstudiante.close();
+             string ruta2 = "dot -Tpng ESTUDIANTES"+to_string(contadorEstudiante)+".dot -o imagenEstudiante"+to_string(contadorEstudiante)+".png";
+            const char * comm2 = ruta2.c_str();
+            system(comm2);
+          }
           //COLOCAR CODIGO AQUI 
             break;
           case 2:
-          cout<<"SE LINEALIZO"<<endl;
+            contadorTareas++;
+         
+          archivoTAREA.open("TAREAS"+to_string(contadorTareas)+".dot",ios::out);
+          if(archivoTAREA.fail()==true){
+            cout<<"EL ARCHIVO NO SE PUDO ABRIR"<<endl;
+          }else{
+            string m1= "";
+            string nuevos="";
+            int y=0;
+            stringstream  input_dat(lecturaTarea.listadobleEnlazada.indice());
+            string nosed2="";
+           while(getline(input_dat,nuevos,'*')){
+             m1+="a"+to_string(y)+"[ label ="+"\""+nuevos+"\""+"]";
+             
+             if(y==lecturaTarea.listadobleEnlazada.conta-1){
+                nosed2+="a"+to_string(y);
+            }else{
+                nosed2+="a"+to_string(y)+"->";
+            }
+            y++;
+           }
+            lecturaTarea.listadobleEnlazada.conca="";
+            if(eliminado>0){
+              lecturaTarea.listadobleEnlazada.conta=0;
+            }
+            
+               
+             
+            
+            archivoTAREA<<"digraph G {rankdir=\"LR\";subgraph cluster_0 {style=filled;color=blue;node [style=filled,color=white];"+m1+nosed2+"[dir=\"both\"];}}";
+             archivoTAREA.close();
+             string ruta3 = "dot -Tpng TAREAS"+to_string(contadorTareas)+".dot -o imagenTareas"+to_string(contadorTareas)+".png";
+            const char * comm3 = ruta3.c_str();
+            system(comm3);
+          }
           //COLOCAR CODIGO AQUI 
           break;
           case 3:
             break;
+           case 4:
+            break;
+             case 5:
+            break;
+             case 6:
+
+            break;
           }
-        } while (variableReporte!=3);
+        } while (variableReporte!=6);
         
         }else{
+          contadorError++;
+          fstream  archivoError;
+          archivoError.open("error"+to_string(contadorError)+".dot",ios::out);
           cout<<"HAY ERRORES NO SE PUEDE GENERAR NINGUN REPORTE"<<endl;
+          if(archivoError.fail()==true){
+            cout<<"el archivo no se pudo abrir"<<endl;
+          }else{
+            string m= "";
+            string nosed="";
+            for (int i = 0; i < lecturaEstudiantes.nodoLista.desplegar2(); i++)
+            {
+              m+="a"+to_string(i)+"[ label ="+"\""+lecturaEstudiantes.nodoLista.datosds(i)+"\""+"]";
+              
+              if(i==lecturaEstudiantes.nodoLista.desplegar2()-1){
+                nosed+="a"+to_string(i);
+            }else{
+                  nosed+="a"+to_string(i)+"->";
+            }
+            
+            
+          }
+
+          archivoError<<"digraph G {rankdir=\"LR\";subgraph cluster_0 {style=filled;color=red;node [style=filled,color=white];"+m+nosed+";}}";
+          archivoError.close();
+          ruta = "dot -Tpng error"+to_string(contadorError)+".dot -o imagenError"+to_string(contadorError)+".png";
+          const char * comm = ruta.c_str();
+          cout<<comm<<endl;
+            system(comm);
+        }
+        
+         
         }
 
         break;
@@ -310,7 +420,6 @@ public:
       }
     }while(numeroMenu!=5);
   };
-  
 };
 
 //FUNCION PRINCIPAL PARA INICIAR LA CLASE MENU

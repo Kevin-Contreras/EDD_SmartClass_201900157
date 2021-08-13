@@ -11,7 +11,9 @@ class nodoT{
 
 class ListaDoble{
 public:
+int conta=0;
 int idNuevo=0;
+string conca;
 nodoT* primero1=NULL;
 nodoT* ultimo1=NULL;
 int contadorll=0;
@@ -37,7 +39,7 @@ void insertar(string datoNuevo){
 
 }
 void desplegar(){
-  int conta=0;
+  
   nodoT* actual2 = new nodoT();
   actual2 = primero1;
   if (primero1!=NULL)
@@ -46,17 +48,41 @@ void desplegar(){
     {
       if(actual2->datok !="-1"){
         conta++;
-      cout<<actual2->datok + ": "+ to_string(conta)<<endl;
+      
       }
       
      actual2=actual2->siguiente;
     } 
-   conta=0;
+   
   }else{
     cout<<"la lista se encuentra vacia"<<endl;
   }
   
 };
+string indice(){
+ nodoT* actual2 = new nodoT();
+  actual2 = primero1;
+ 
+  if (primero1!=NULL)
+  {
+    while(actual2 !=NULL)
+    {
+      if(actual2->datok !="-1"){
+      
+        conca+=actual2->datok+"*";
+      
+      }
+      
+     actual2=actual2->siguiente;
+    } 
+    return conca;
+   
+  }else{
+    cout<<"la lista se encuentra vacia"<<endl;
+  }
+};
+
+
 void buscarNodo(){
   nodoT* actual = new nodoT();
   actual = primero1;

@@ -306,4 +306,42 @@ void buscarNodo(string dpi){
      cout<<"EL REGISTRO NO HA SIDO ELIMINADO"<<endl;
    }
  } 
+ string recorrer(int id){
+  nodo * aux = new nodo();
+  aux = primer;
+   string cadena;
+  if(primer != NULL){
+    for (int i = 0; i < id+1; i++)
+    {
+      cadena =  aux->dato;
+     aux=aux->siguiente;
+    }
+    
+     return cadena;
+   
+    
+  }else{
+    cout<<"la lista esta vacia";
+  }
+};
+int indice(){
+  nodo * aux = new nodo();
+  aux = primer;
+  int contador=0;
+  string cadena;
+  if(primer != NULL){
+   do
+    {
+     contador++;
+     aux=aux->siguiente;
+    } while (aux != primer);
+    
+     return contador;
+   
+    
+  }else{
+    cout<<"la lista esta vacia";
+  }
+};
+
 };

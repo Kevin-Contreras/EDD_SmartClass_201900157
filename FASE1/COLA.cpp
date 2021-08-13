@@ -35,9 +35,9 @@ class cola{
     bool encontrado=false;
     int nodoBuscado = 0;
     if(primeros!=NULL){
-      while(actuals!=NULL &&  encontrado !=true){
+      while(actuals!=NULL ){
         if(actuals->datosCola.find(eliminarNodo)!=-1){
-          cout<<"nodo encontrado"<<eliminarNodo;
+          cout<<"nodo encontrado "<<eliminarNodo;
           if(actuals ==primeros){
               primeros=primeros->siguientes;
           }else if(actuals==ultimos){
@@ -73,6 +73,40 @@ class cola{
       return 1;
     }
   };
+  int desplegar2(){
+    int contador=0;
+
+    nodoCola * actual = new nodoCola();
+    actual = primeros;
+    if(primeros!=NULL){
+     
+      while(actual!=NULL){
+        contador++;
+       
+        actual=actual->siguientes;
+      }
+    return contador;
+    }
+  }
+   string datosds(int insertar){
+    string cadena;
+
+    nodoCola * actual = new nodoCola();
+    actual = primeros;
+    
+    for (int i = 0; i < insertar+1; i++)
+    {
+      
+       cadena =  actual->datosCola;
+        actual=actual->siguientes;
+        
+    }
+        return cadena;
+      
+    
+    
+  };
+ 
  
 
 
