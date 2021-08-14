@@ -13,7 +13,7 @@ class cola2{
   void insertar(string datos){
     nodoCola2* nuevo = new nodoCola2();
     nuevo->datosCola=datos;
-    cout<<nuevo->datosCola<<" datos de  la cola"<<endl;
+    
     if(primeros ==NULL){
       primeros=nuevo;
       primeros->siguientes=NULL;
@@ -54,8 +54,6 @@ class cola2{
       if(!encontrado){
         cout<<"nodo no encontrado"<<endl;
       }
-    }else{
-      cout<<"LA COLA ESTA VACIA "<<endl;
     }
   }
   int desplegar(){
@@ -67,7 +65,7 @@ class cola2{
      
       while(actual!=NULL){
         contador++;
-        cout<<actual->datosCola<<endl;
+       
         actual=actual->siguientes;
       }
     return contador;

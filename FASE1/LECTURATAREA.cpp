@@ -18,7 +18,7 @@ class LeerTarea{
    void leerArchivo(string carnetsEstudiantes[]){
     
      id = id+listadobleEnlazada.idNuevo;
-     cout<<id<<" este es el id puta madre "<<endl;
+    
   string mes;
   stringstream  streamdata(carnetsEstudiantes[1]);
   stringstream  streames(carnetsEstudiantes[0]);
@@ -70,7 +70,7 @@ class LeerTarea{
     int u =0;
     
     
-    cout<<datoss[1][4][11]<<endl;
+    
     string mesValor;
     string diaValor;
     string horaValor;
@@ -132,14 +132,16 @@ class LeerTarea{
       string materia;
       string fecha;
       string estado;
+      string hora2;
       //----------------
       string coma;
       fstream archivo;
+      string fechaNueva;
       int contador2=0;
       
       archivo.open(url, ios::in);
       if(archivo.fail()){
-        cout<<"EL ARCHIVO NO SE PUDO ABRIR";
+        cout<<""<<endl;
       };
       while (getline(archivo,archivoCadena))
       {
@@ -158,34 +160,57 @@ class LeerTarea{
             mes += archivocadena4+",";
             concatenar +=archivocadena4;
             if(stoi(archivocadena4)>6 && stoi(archivocadena4)<12 ){
-                  cout<<"el mes esta en el intervalo "<<archivocadena4<<endl;
+              if(archivocadena4.length()==1){
+                fechaNueva+="0"+archivocadena4+"/";
+              }else{
+                 fechaNueva+=archivocadena4+"/";
+              }
+              
+                 
             }else{
               // ENVIAR EL ERROR EN UNA COLA MES
+              if(archivocadena4.length()==1){
+                fechaNueva+="0"+archivocadena4+"/";
+              }else{
+                 fechaNueva+=archivocadena4+"/";
+              }
               cola.insertar("TYPO:TAREA, EL MES NO ESTA EN EL RANGO ADECUADO id: "+ to_string(id));
-              cout<<"el mes no esta en el intervalo que se desea ERROR. en el id: "<< id <<endl;
+              
             }
           }
           if(contador2==2){
             dia += archivocadena4+",";
             concatenar +="/"+archivocadena4+"/";
             if(stoi(archivocadena4)<31 && stoi(archivocadena4)>0 ){
-                  cout<<"el DIA esta en el intervalo "<<archivocadena4<<endl;
+              if(archivocadena4.length()==1){
+                fechaNueva+="0"+archivocadena4;
+              }else{
+                 fechaNueva+=archivocadena4;
+              }
+              
+                 
             }else{
               // ENVIAR EL ERROR EN UNA COLA MES
+              if(archivocadena4.length()==1){
+                fechaNueva+="0"+archivocadena4+"/";
+              }else{
+                 fechaNueva+=archivocadena4+"/";
+              }
               cola.insertar("TYPO:TAREA, el DIA no esta en el intervalo que se desea ERROR.en el id: "+ to_string(id));
-              cout<<"el DIA no esta en el intervalo que se desea ERROR.en el id: "<< id<<endl;
+              
             }
           }
           if(contador2==3){
             
             hora += archivocadena4+",";
+            hora2=archivocadena4;
             concatenar +=archivocadena4+",";
             if(stoi(archivocadena4)>7 && stoi(archivocadena4)<17 ){
-                  cout<<"la HORA esta en el intervalo "<<archivocadena4<<endl;
+                 
             }else{
               // ENVIAR EL ERROR EN UNA COLA MES
               cola.insertar("TYPO:TAREA, LA HORA no esta en el intervalo que se desea ERROR.en el id: "+ to_string(id));
-              cout<<"LA HORA no esta en el intervalo que se desea ERROR.en el id: "<< id<<endl;
+              
             }
           }
           if(contador2==4){
@@ -217,7 +242,10 @@ class LeerTarea{
           string diaw="";
           int contadorfecha =0;
           if(contador2==8){
-            stringstream  streamfecha(archivocadena4+"/");
+            
+            
+            stringstream  streamfecha("2021/"+fechaNueva+"/");
+            fechaNueva="";
             while(getline(streamfecha,fechaseparada,'/')){
               contadorfecha++;
               if(contadorfecha==1){
@@ -230,9 +258,11 @@ class LeerTarea{
               }
               
             }
+           
             concatenar2 +=diaw+mes+anio+",";
+             concatenar2+=hora2+",";
             if(regex_match(archivocadena4,expReg)==true){
-              cout<<"la FECHA ESTA BIEN ESCRITA"<<archivocadena4<<endl;
+              
             }else{
               // ENVIAR EL ERROR EN UNA COLA MES
               cola.insertar("TYPO:TAREA, la fecha no esta bien escrita.en el id: "+ to_string(id));

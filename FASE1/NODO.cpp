@@ -42,7 +42,7 @@ void mostrar(){
   if(primer != NULL){
     do
     {
-     cout<<"["<<aux->dato<<"]";
+     
      aux=aux->siguiente;
     } while (aux != primer);
     

@@ -17,6 +17,7 @@ string conca;
 nodoT* primero1=NULL;
 nodoT* ultimo1=NULL;
 int contadorll=0;
+int contadorll2=0;
 void insertar(string datoNuevo){
   
   nodoT* nuevo = new nodoT();
@@ -39,7 +40,7 @@ void insertar(string datoNuevo){
 
 }
 void desplegar(){
-  
+  conta=0;
   nodoT* actual2 = new nodoT();
   actual2 = primero1;
   if (primero1!=NULL)
@@ -62,7 +63,7 @@ void desplegar(){
 string indice(){
  nodoT* actual2 = new nodoT();
   actual2 = primero1;
- 
+ conca="";
   if (primero1!=NULL)
   {
     while(actual2 !=NULL)
@@ -102,7 +103,7 @@ void buscarNodo(){
 
    }
    if(!encontrado){
-     cout<<"nod no encontrado"<<endl;
+     cout<<"nodo no encontrado"<<endl;
    }
   }else{
     cout<<"la lista se encuentra vacia"<<endl;
@@ -121,17 +122,16 @@ void modificarNodo(string cadenaTarea,int valorTotal){
       contadorll++;
      
      if(contadorll==valorTotal){
-       cout<<  contadorll<<endl;
-       cout<<valorTotal<<endl;
+      
      if(actual->datok=="-1"){
        idNuevo++;
-       cout<<actual->datok<<endl;
+      
        actual->datok ="id "+cadenaTarea;
-       cout<<actual->datok<<endl;
+       
        encontrado =true;
        
      }else{
-       cout<<"no se ingreso el dato"<<endl;;
+       cout<<"ESA FECHA YA ESTA OCUPADA POR UNA TAREA NO SE INGRESO LA TAREA"<<endl;;
      }  
      }
      
@@ -213,7 +213,7 @@ void cambiarDatos(int idDat){
        while (getline(datobuscadoa,datos,','))
        {
              contador2++;
-             cout<<datos<<endl;
+             
             if(contador2==2){
               cout<<"CARNET: "+datos<<endl;
             }
@@ -230,16 +230,21 @@ void cambiarDatos(int idDat){
               cout<<"FECHA: "+datos<<endl;
             }
             if(contador2==7){
+              cout<<"HORA: "+datos<<endl;
+            }
+            if(contador2==8){
               cout<<"ESTADO: "+datos<<endl;
             }
        };
+       
        stringstream  datobuscado(actual->datok);
+       actual->datok = "-1";
         cout<<"INGRESE LOS DATOS A MODIFICAR"<<endl;
         while (getline(datobuscado,datos2,','))
         {
           
           contador++;
-          cout<<contador<<" : contador : "<<datos2<<endl;
+          
           if(contador==1){
             cout<<" MODIFICAR MES"<<endl;
               cin>>mes;
@@ -250,7 +255,7 @@ void cambiarDatos(int idDat){
          
           
             cout<<" MODIFICAR HORA"<<endl;
-            cin>>sn1;
+            cin>>hora;
           }
             
         
@@ -317,7 +322,7 @@ void cambiarDatos(int idDat){
           }
          
         }
-         if(contador==7){
+         if(contador==8){
             cout<<"¿DESEA MODIFICAR EL ESTADO? (SI (COLOCAR UN 1) O NO (COLOCAR UN 0))"<<endl;
             cin>>sn1;
             if(sn1==1){
@@ -332,9 +337,9 @@ void cambiarDatos(int idDat){
           }
        
      }
-     todos = "id "+to_string(idDat)+","+carnet+","+nombre+","+descripcion+","+materia+","+fecha+","+estado+",";
+     todos = "id "+to_string(idDat)+","+carnet+","+nombre+","+descripcion+","+materia+","+fecha+","+to_string(hora)+","+estado+",";
       modificarNodo(todos,(mes-1)*30*24+(dia-1)*24+hora);
-      actual->datok = "-1";
+      
        encontrado =true;
      }
       actual=actual->siguiente;
@@ -348,6 +353,99 @@ void cambiarDatos(int idDat){
     cout<<"la lista se encuentra vacia"<<endl;
   }
   
+  }
+}
+void mostrarTarea(int valorTotal){
+   int contador2=0;
+   string datos;
+  nodoT* actualT = new nodoT();
+  actualT = primero1;
+  bool encontrado = false;
+  string nodoBuscado;
+ contadorll2=0;
+  if (primero1!=NULL)
+  {
+   while (contadorll2!=valorTotal )
+   {
+      contadorll2++;
+     
+     if(contadorll2==valorTotal){
+       stringstream  inter2(actualT->datok);
+      
+        encontrado=true;
+       while (getline(inter2,datos,','))
+       {
+             contador2++;
+             
+            if(contador2==2){
+              cout<<"CARNET: "+datos<<endl;
+            }
+            if(contador2==3){
+              cout<<"NOMBRE: "+datos<<endl;
+            }
+            if(contador2==4){
+              cout<<"DESCRIPCION: "+datos<<endl;
+            }
+            if(contador2==5){
+              cout<<"MATERIA: "+datos<<endl;
+            }
+            if(contador2==6){
+              cout<<"FECHA: "+datos<<endl;
+            }
+            if(contador2==7){
+              cout<<"HORA: "+datos<<endl;
+            }
+            if(contador2==8){
+              cout<<"ESTADO: "+datos<<endl;
+            }
+       };
+       
+       
+     }
+     if(!encontrado){
+       cout<<"LA TAREA NO EXISTE"<<endl;
+     }
+     actualT=actualT->siguiente;
+    
+
+   }
+   if(!encontrado){
+     cout<<"nodo no encontrado"<<endl;
+   }
+  }else{
+    cout<<"la lista se encuentra vacia"<<endl;
+  }
+}
+void mostrarPosicion(int valorTotal){
+   int contador2=0;
+   string datos;
+  nodoT* actualT = new nodoT();
+  actualT = primero1;
+  bool encontrado = false;
+  string nodoBuscado;
+ contadorll2=0;
+  if (primero1!=NULL)
+  {
+   while (contadorll2!=valorTotal )
+   {
+      contadorll2++;
+     
+     if(contadorll2==valorTotal){
+     
+       cout<<"POSICION EN LA LISTA: "+to_string(contadorll2) +" (ACLARACION ESTA POSICION EN LA LISTA ES CON RESPECTO A 12 MESES A 30 DIAS Y A 24 HORAS)"<<endl;
+        encontrado=true;
+      
+       
+       
+     }
+     
+     actualT=actualT->siguiente;
+    
+
+   }
+
+  }else{
+    cout<<"la lista se encuentra vacia"<<endl;
   }
 }
 

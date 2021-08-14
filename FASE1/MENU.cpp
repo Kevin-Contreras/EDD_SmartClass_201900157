@@ -4,7 +4,7 @@
 #include "./separacion.cpp"
 #include <string.h>
 #include <cstring>
-#include <bits/stdc++.h>
+
 #include<windows.h>
 
 using namespace std;
@@ -20,6 +20,8 @@ public:
     int contadorEstudiante=0;
     int contadorTareas=0;
     int eliminado=0;
+    int eliminado2=0;
+    int coi=0;
     string carnetAgregar;
     string dpiAgregar;
     string nombreAgregar;
@@ -40,6 +42,9 @@ public:
     string cadenaToda;
     string *p;
     string ruta;
+    string final1;
+    string variable1;
+    string variable2;
     int numeroMenu;
     int mes;
     int idEliminar;
@@ -47,12 +52,19 @@ public:
     int dia;
     int c=0;
     int hora;
+    int mes1=0;
+    int dia1=0;
+    int hora1=0;
+    int mes2=0;
+    int dia2=0;
+    int hora2=0;
     Leer lecturaEstudiantes;
     LeerTarea lecturaTarea;
     sepa nose;
     string cadena [2];
      fstream  archivoEstudiante;
      fstream archivoTAREA;
+     fstream archivoSalida;
 
     do{
       cout<<"******************MENU***************"<<endl;
@@ -234,17 +246,18 @@ public:
             cout<<"INGRESE LA DESCRIPCION: ";
              getline(cin,descripcion);
              cadenaToda +=descripcion+",";
+             cout<<"INGRESE LA MATERIA: ";
+             getline(cin,materia);
+             cadenaToda +=materia+",";
             cout<<"INGRESE LA FECHA: ";
             cin>>fecha;
             cadenaToda +=fecha+",";
+            cadenaToda+=to_string(hora)+",";
             cout<<"INGRESE EL ESTADO: ";
             cin>>estado;
             cadenaToda +=estado+",";
             lecturaTarea.id--;
-           for (int u=0;u<2;u++){
-              cout<<(u)<<endl;
-           }
-           
+        
           lecturaTarea.listadobleEnlazada.modificarNodo(cadenaToda,(mes-1)*30*24+(dia-1)*24+hora);
            lecturaTarea.listadobleEnlazada.desplegar();
            cadenaToda="";
@@ -254,9 +267,8 @@ public:
           cin>>idCambiar;
           lecturaTarea.listadobleEnlazada.cambiarDatos(idCambiar);
           lecturaEstudiantes.nodoLista.eliminar("id: "+to_string(idCambiar));
-           cout<<"SE ELIMINARON LOS DATOS DE LOS LAS TAREAS"<<endl; 
-          eliminado++;
-          
+            
+         
           break;
           case 3:
           cout<<"COLOCAR EL ID DE LA TAREA"<<endl;
@@ -307,7 +319,7 @@ public:
             string nosed2="";
             for (int i = 1; i < lecturaEstudiantes.lista.indice(); i++)
             {
-                cout<<i<<endl;
+                
              m1+="a"+to_string(i)+"[ label ="+"\""+lecturaEstudiantes.lista.recorrer(i)+"\""+"]";
              if(i==1){
               m2+="a"+to_string(i);
@@ -341,34 +353,126 @@ public:
            while(getline(input_dat,nuevos,'*')){
              m1+="a"+to_string(y)+"[ label ="+"\""+nuevos+"\""+"]";
              
-             if(y==lecturaTarea.listadobleEnlazada.conta-1){
-                nosed2+="a"+to_string(y);
-            }else{
+             
                 nosed2+="a"+to_string(y)+"->";
-            }
+            
             y++;
            }
+           string st = nosed2.substr(0, nosed2.size()-2);
             lecturaTarea.listadobleEnlazada.conca="";
-            if(eliminado>0){
-              lecturaTarea.listadobleEnlazada.conta=0;
-            }
-            
-               
-             
-            
-            archivoTAREA<<"digraph G {rankdir=\"LR\";subgraph cluster_0 {style=filled;color=blue;node [style=filled,color=white];"+m1+nosed2+"[dir=\"both\"];}}";
+            archivoTAREA<<"digraph G {rankdir=\"LR\";subgraph cluster_0 {style=filled;color=blue;node [style=filled,color=white];"+m1+st+"[dir=\"both\"];}}";
              archivoTAREA.close();
              string ruta3 = "dot -Tpng TAREAS"+to_string(contadorTareas)+".dot -o imagenTareas"+to_string(contadorTareas)+".png";
             const char * comm3 = ruta3.c_str();
             system(comm3);
+            lecturaTarea.listadobleEnlazada.conta=0;
           }
           //COLOCAR CODIGO AQUI 
           break;
           case 3:
+          
+          cout<<"INGRESE EL MES"<<endl;
+          cin>>mes1;
+          cout<<"INGRESE EL DIA"<<endl;
+          cin>>dia1;
+          cout<<"INGRESE LA HORA"<<endl;
+          cin>>hora1;
+
+          lecturaTarea.listadobleEnlazada.mostrarTarea((mes1-1)*30*24+(dia1-1)*24+hora1);
             break;
            case 4:
+           cout<<"INGRESE EL MES"<<endl;
+          cin>>mes2;
+          cout<<"INGRESE EL DIA"<<endl;
+          cin>>dia2;
+          cout<<"INGRESE LA HORA"<<endl;
+          cin>>hora2;
+          lecturaTarea.listadobleEnlazada.mostrarPosicion((mes2-1)*30*24+(dia2-1)*24+hora2);
             break;
+
              case 5:
+             archivoSalida.open("archivoSalida.txt",ios::out);
+             if(archivoSalida.fail()==true){
+               cout<<"EL ARCHIVO NO SE PUDO ABRIR"<<endl;
+             }else{
+               string concatenarEstudiantes;
+               int contadorEstu=0;
+               int contadorTarea=0;
+               for (int i = 0; i < lecturaEstudiantes.lista.indice(); i++)
+               {
+                 if(i>0){
+                   string study;
+                 stringstream  dataEstudiantes(lecturaEstudiantes.lista.recorrer(i));
+                 while (getline(dataEstudiantes,study,','))
+                 {
+                   contadorEstu++;
+                   if(contadorEstu==1){
+                     concatenarEstudiantes+="   ¿item Carnet = \""+study+"\" $?"+"\n";
+                   }
+                   if(contadorEstu==2){
+                     concatenarEstudiantes+="   ¿item DPI = \""+study+"\" $?"+"\n";
+                   }
+                   if(contadorEstu==3){
+                     concatenarEstudiantes+="   ¿item Nombre = \""+study+"\" $?"+"\n";
+                   }
+                   if(contadorEstu==4){
+                     concatenarEstudiantes+="   ¿item Carrera = \""+study+"\" $?"+"\n";
+                   }
+                   if(contadorEstu==5){
+                     concatenarEstudiantes+="   ¿item Password = \""+study+"\" $?"+"\n";
+                   }
+                   if(contadorEstu==6){
+                     concatenarEstudiantes+="   ¿item Creditos = "+study+" $?"+"\n";
+                   }
+                   if(contadorEstu==7){
+                     concatenarEstudiantes+="   ¿item Edad = "+study+" $?"+"\n";
+                   }
+                   
+                 }
+                 contadorEstu=0;
+                 final1+="¿element type=\"user\"?\n"+concatenarEstudiantes+"¿$element?"+"\n";
+                 concatenarEstudiantes="";
+
+                 }
+                 
+               }
+               stringstream  input_dat2(lecturaTarea.listadobleEnlazada.indice());
+               while(getline(input_dat2,variable1,'*')){
+                 stringstream  input_dat3(variable1);
+                 while (getline(input_dat3,variable2,','))
+                 {
+                   contadorTarea++;
+                   if(contadorTarea==2){
+                     concatenarEstudiantes+="   ¿item Carnet = \""+variable2+"\" $?"+"\n";
+                   }
+                   if(contadorTarea==3){
+                     concatenarEstudiantes+="   ¿item Nombre = \""+variable2+"\" $?"+"\n";
+                   }
+                   if(contadorTarea==4){
+                     concatenarEstudiantes+="   ¿item Descripcion = \""+variable2+"\" $?"+"\n";
+                   }
+                   if(contadorTarea==5){
+                     concatenarEstudiantes+="   ¿item Materia = \""+variable2+"\" $?"+"\n";
+                   }  
+                   if(contadorTarea==6){
+                     concatenarEstudiantes+="   ¿item Fecha = \""+variable2+"\" $?"+"\n";
+                   }
+                   if(contadorTarea==7){
+                     concatenarEstudiantes+="   ¿item Hora = \""+variable2+":00\" $?"+"\n";
+                   }
+                   if(contadorTarea==8){
+                     concatenarEstudiantes+="   ¿item Estado = \""+variable2+"\" $?"+"\n";
+                   }
+                 }
+                 contadorTarea=0;
+                 final1+="¿element type=\"task\"?\n"+concatenarEstudiantes+"¿$element?"+"\n";
+                 concatenarEstudiantes="";
+               }
+               archivoSalida<<"¿Elements?\n"+final1+"¿$Elements?";
+               final1="";
+               archivoSalida.close();
+               
+             }
             break;
              case 6:
 
@@ -403,7 +507,7 @@ public:
           archivoError.close();
           ruta = "dot -Tpng error"+to_string(contadorError)+".dot -o imagenError"+to_string(contadorError)+".png";
           const char * comm = ruta.c_str();
-          cout<<comm<<endl;
+         
             system(comm);
         }
         
