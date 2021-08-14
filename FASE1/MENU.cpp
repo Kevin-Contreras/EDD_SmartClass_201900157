@@ -67,6 +67,7 @@ public:
      fstream archivoSalida;
 
     do{
+      
       cout<<"******************MENU***************"<<endl;
       cout<<"1- CARGA DE USUARIO"<<endl;
       cout<<"2- CARGA DE TAREAS"<<endl;
