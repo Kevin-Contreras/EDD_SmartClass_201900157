@@ -402,9 +402,7 @@ void mostrarTarea(int valorTotal){
        
        
      }
-     if(!encontrado){
-       cout<<"LA TAREA NO EXISTE"<<endl;
-     }
+     
      actualT=actualT->siguiente;
     
 

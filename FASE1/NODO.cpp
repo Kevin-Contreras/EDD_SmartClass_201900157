@@ -33,8 +33,6 @@ void ingresar_datos(string datos){
     ultimo=nuevo_nodo;
     primer->anterior=ultimo;
   }
-  
-  
 }
 void mostrar(){
   nodo * aux = new nodo();
