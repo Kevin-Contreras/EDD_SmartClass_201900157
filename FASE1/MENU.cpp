@@ -341,7 +341,7 @@ public:
             break;
           case 2:
             contadorTareas++;
-         
+         cout<<lecturaTarea.listadobleEnlazada.mostrarALaux()<<endl;
           archivoTAREA.open("TAREAS"+to_string(contadorTareas)+".dot",ios::out);
           if(archivoTAREA.fail()==true){
             cout<<"EL ARCHIVO NO SE PUDO ABRIR"<<endl;

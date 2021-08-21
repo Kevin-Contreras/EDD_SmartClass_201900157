@@ -427,7 +427,6 @@ void mostrarPosicion(int valorTotal){
    while (contadorll2!=valorTotal )
    {
       contadorll2++;
-     
      if(contadorll2==valorTotal){
      
        cout<<"POSICION EN LA LISTA: "+to_string(contadorll2) +" (ACLARACION ESTA POSICION EN LA LISTA ES CON RESPECTO A 12 MESES A 30 DIAS Y A 24 HORAS)"<<endl;
@@ -442,6 +441,30 @@ void mostrarPosicion(int valorTotal){
 
    }
 
+  }else{
+    cout<<"la lista se encuentra vacia"<<endl;
+  }
+}
+
+string mostrarALaux(){
+   string contador2st;
+   string datos;
+  nodoT* actualT = new nodoT();
+  actualT = primero1;
+  bool encontrado = false;
+  string nodoBuscado;
+ contadorll2=0;
+  if (primero1!=NULL)
+  {
+   while (actualT!=NULL )
+   {
+     
+    contador2st+= actualT->datok+",";
+     actualT=actualT->siguiente;
+    
+
+   }
+  return contador2st;
   }else{
     cout<<"la lista se encuentra vacia"<<endl;
   }
