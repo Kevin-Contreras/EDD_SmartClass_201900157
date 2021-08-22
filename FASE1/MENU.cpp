@@ -388,7 +388,7 @@ public:
           cin>>dia2;
           cout<<"INGRESE LA HORA"<<endl;
           cin>>hora2;
-          lecturaTarea.listadobleEnlazada.mostrarPosicion(((mes2-7)*30+(dia2-1))*9+(hora2-7));
+          lecturaTarea.listadobleEnlazada.mostrarPosicion(((mes2-7)*30+(dia2-1))*9+(hora2-7),mes2,dia2,hora2);
             break;
 
              case 5:

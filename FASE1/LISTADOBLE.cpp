@@ -414,7 +414,7 @@ void mostrarTarea(int valorTotal){
     cout<<"la lista se encuentra vacia"<<endl;
   }
 }
-void mostrarPosicion(int valorTotal){
+void mostrarPosicion(int valorTotal,int mes,int dia,int hora){
    int contador2=0;
    string datos;
   nodoT* actualT = new nodoT();
@@ -422,6 +422,7 @@ void mostrarPosicion(int valorTotal){
   bool encontrado = false;
   string nodoBuscado;
  contadorll2=0;
+ cout<<"posicion en la matrix["+to_string(mes-7)+"]["+to_string(dia-1)+"]["+to_string(hora-8)+"]"<<endl;
   if (primero1!=NULL)
   {
    while (contadorll2!=valorTotal )
@@ -429,7 +430,7 @@ void mostrarPosicion(int valorTotal){
       contadorll2++;
      if(contadorll2==valorTotal){
      
-       cout<<"POSICION EN LA LISTA: "+to_string(contadorll2)<<endl;
+       cout<<"POSICION EN LA LISTA: "+to_string(contadorll2-1)<<endl;
         encontrado=true;
       
        

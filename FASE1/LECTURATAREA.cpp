@@ -96,9 +96,9 @@ class LeerTarea{
          contadorMes++;
          //FORMULA PARA COLUMNMAJOR
          
-          matrizColumnMajor[i+5*(j+30*k)]=datoss[i][j][k];
+          matrizColumnMajor[j+30*(k+9*i)]=datoss[i][j][k];
         //
-          listadobleEnlazada.insertar( matrizColumnMajor[i+5*(j+30*k)]);
+          listadobleEnlazada.insertar( matrizColumnMajor[j+30*(k+9*i)]);
         }
         
       }
