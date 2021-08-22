@@ -37,20 +37,20 @@ class LeerTarea{
       contadornose2++;
    }
    
-    string datoss[12][30][24];
+    string datoss[5][30][9];
    
     int sol=0;
      int contadorhora=0;
-    for (int i = 0; i < 12; i++){
+    for (int i = 0; i < 5; i++){
       for (int j = 0; j <30 ; j++)
       {
          sol=0;
-        for (int k = 0; k < 24; k++)
+        for (int k = 0; k < 9; k++)
         {
           sol=0;
           for (int l = 0; l < id; l++)
           {
-            if(to_string(i+1)+"/"+to_string(j+1)+"/"+to_string(k+1)==matrizFecha[l]){
+            if(to_string(i+7)+"/"+to_string(j+1)+"/"+to_string(k+8)==matrizFecha[l]){
                
                 datoss[i][j][k]=matrizDatos[l];
                 contadorhora++;
@@ -89,16 +89,16 @@ class LeerTarea{
     string matrizColumnMajor[contadorhora];
     
     
-    for (int i = 0; i < 12; i++){
+    for (int i = 0; i < 5; i++){
       for(int j=0; j<30; j++){
-        for (int k = 0; k < 24; k++)
+        for (int k = 0; k < 9; k++)
         {
          contadorMes++;
          //FORMULA PARA COLUMNMAJOR
          
-          matrizColumnMajor[i+12*(j+30*k)]=datoss[i][j][k];
+          matrizColumnMajor[i+5*(j+30*k)]=datoss[i][j][k];
         //
-          listadobleEnlazada.insertar( matrizColumnMajor[i+12*(j+30*k)]);
+          listadobleEnlazada.insertar( matrizColumnMajor[i+5*(j+30*k)]);
         }
         
       }

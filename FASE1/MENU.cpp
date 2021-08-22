@@ -154,7 +154,7 @@ public:
             lecturaEstudiantes.lista.copia();
             nose.separar(lecturaEstudiantes.lista.datosTodos);
             if(s==1){
-            lecturaTarea.id=0;
+            
             p = lecturaTarea.cadenea(string(pathTask),lecturaEstudiantes.carnet);
             for (int u =0; u<2;u++){
               cadena[u]=*(p+u);
@@ -259,7 +259,7 @@ public:
             cadenaToda +=estado+",";
             lecturaTarea.id--;
         
-          lecturaTarea.listadobleEnlazada.modificarNodo(cadenaToda,(mes-1)*30*24+(dia-1)*24+hora);
+          lecturaTarea.listadobleEnlazada.modificarNodo(cadenaToda,((mes-7)*30+(dia-1))*9+(hora-7));
            lecturaTarea.listadobleEnlazada.desplegar();
            cadenaToda="";
             break;
@@ -379,7 +379,7 @@ public:
           cout<<"INGRESE LA HORA"<<endl;
           cin>>hora1;
 
-          lecturaTarea.listadobleEnlazada.mostrarTarea((mes1-1)*30*24+(dia1-1)*24+hora1);
+          lecturaTarea.listadobleEnlazada.mostrarTarea(((mes1-7)*30+(dia1-1))*9+(hora1-7));
             break;
            case 4:
            cout<<"INGRESE EL MES"<<endl;
@@ -388,7 +388,7 @@ public:
           cin>>dia2;
           cout<<"INGRESE LA HORA"<<endl;
           cin>>hora2;
-          lecturaTarea.listadobleEnlazada.mostrarPosicion((mes2-1)*30*24+(dia2-1)*24+hora2);
+          lecturaTarea.listadobleEnlazada.mostrarPosicion(((mes2-7)*30+(dia2-1))*9+(hora2-7));
             break;
 
              case 5:
@@ -427,6 +427,9 @@ public:
                    }
                    if(contadorEstu==7){
                      concatenarEstudiantes+="   ¿item Edad = "+study+" $?"+"\n";
+                   }
+                   if(contadorEstu==8){
+                     concatenarEstudiantes+="   ¿item Correo = \""+study+"\" $?"+"\n";
                    }
                    
                  }

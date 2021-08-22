@@ -338,7 +338,7 @@ void cambiarDatos(int idDat){
        
      }
      todos = "id "+to_string(idDat)+","+carnet+","+nombre+","+descripcion+","+materia+","+fecha+","+to_string(hora)+","+estado+",";
-      modificarNodo(todos,(mes-1)*30*24+(dia-1)*24+hora);
+      modificarNodo(todos,((mes-7)*30+(dia-1))*9+(hora-7));
       
        encontrado =true;
      }
@@ -371,7 +371,7 @@ void mostrarTarea(int valorTotal){
      
      if(contadorll2==valorTotal){
        stringstream  inter2(actualT->datok);
-      
+      cout<<actualT->datok<<endl;
         encontrado=true;
        while (getline(inter2,datos,','))
        {
@@ -429,7 +429,7 @@ void mostrarPosicion(int valorTotal){
       contadorll2++;
      if(contadorll2==valorTotal){
      
-       cout<<"POSICION EN LA LISTA: "+to_string(contadorll2) +" (ACLARACION ESTA POSICION EN LA LISTA ES CON RESPECTO A 12 MESES A 30 DIAS Y A 24 HORAS)"<<endl;
+       cout<<"POSICION EN LA LISTA: "+to_string(contadorll2)<<endl;
         encontrado=true;
       
        
@@ -458,7 +458,7 @@ string mostrarALaux(){
   {
    while (actualT!=NULL )
    {
-     
+     contadorll2++;
     contador2st+= actualT->datok+",";
      actualT=actualT->siguiente;
     
