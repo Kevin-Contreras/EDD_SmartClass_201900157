@@ -425,22 +425,7 @@ void mostrarPosicion(int valorTotal,int mes,int dia,int hora){
  cout<<"posicion en la matrix["+to_string(mes-7)+"]["+to_string(dia-1)+"]["+to_string(hora-8)+"]"<<endl;
   if (primero1!=NULL)
   {
-   while (contadorll2!=valorTotal )
-   {
-      contadorll2++;
-     if(contadorll2==valorTotal){
-     
-       cout<<"POSICION EN LA LISTA: "+to_string(contadorll2-1)<<endl;
-        encontrado=true;
-      
-       
-       
-     }
-     
-     actualT=actualT->siguiente;
-    
-
-   }
+    cout<<"posiscion "+to_string( (dia-1)+30*((hora-8)+9*(mes-7)))<<endl;
 
   }else{
     cout<<"la lista se encuentra vacia"<<endl;

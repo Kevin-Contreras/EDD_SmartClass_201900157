@@ -51,7 +51,7 @@ class LeerTarea{
           for (int l = 0; l < id; l++)
           {
             if(to_string(i+7)+"/"+to_string(j+1)+"/"+to_string(k+8)==matrizFecha[l]){
-               
+               cout<<to_string(i)+","+to_string(j)+","+to_string(k)<<endl;
                 datoss[i][j][k]=matrizDatos[l];
                 contadorhora++;
             }else{
@@ -104,7 +104,7 @@ class LeerTarea{
       }
     }
    
-
+  cout<<matrizColumnMajor[90]<<endl;
    
     
     
