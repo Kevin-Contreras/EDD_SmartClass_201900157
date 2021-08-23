@@ -259,7 +259,7 @@ public:
             cadenaToda +=estado+",";
             lecturaTarea.id--;
         
-          lecturaTarea.listadobleEnlazada.modificarNodo(cadenaToda,((mes-7)*30+(dia-1))*9+(hora-7));
+          lecturaTarea.listadobleEnlazada.modificarNodo(cadenaToda,(dia-1)+30*((hora-8)+9*(mes-7))+1);
            lecturaTarea.listadobleEnlazada.desplegar();
            cadenaToda="";
             break;
@@ -379,7 +379,7 @@ public:
           cout<<"INGRESE LA HORA"<<endl;
           cin>>hora1;
 
-          lecturaTarea.listadobleEnlazada.mostrarTarea(((mes1-7)*30+(dia1-1))*9+(hora1-7));
+          lecturaTarea.listadobleEnlazada.mostrarTarea((dia1-1)+30*((hora1-8)+9*(mes1-7))+1);
             break;
            case 4:
            cout<<"INGRESE EL MES"<<endl;
@@ -388,7 +388,7 @@ public:
           cin>>dia2;
           cout<<"INGRESE LA HORA"<<endl;
           cin>>hora2;
-          lecturaTarea.listadobleEnlazada.mostrarPosicion(((mes2-7)*30+(dia2-1))*9+(hora2-7),mes2,dia2,hora2);
+          lecturaTarea.listadobleEnlazada.mostrarPosicion((dia2-1)+30*((hora2-8)+9*(mes2-7))+1,mes2,dia2,hora2);
             break;
 
              case 5:

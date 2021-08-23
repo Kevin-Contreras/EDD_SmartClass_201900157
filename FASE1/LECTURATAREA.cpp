@@ -98,14 +98,20 @@ class LeerTarea{
          
           matrizColumnMajor[j+30*(k+9*i)]=datoss[i][j][k];
         //
-          listadobleEnlazada.insertar( matrizColumnMajor[j+30*(k+9*i)]);
+
         }
         
       }
     }
    
-  cout<<matrizColumnMajor[90]<<endl;
-   
+  
+        for (int k = 0; k < 1350; k++)
+        {
+
+          listadobleEnlazada.insertar( matrizColumnMajor[k]);
+        }
+        
+     
     
     
    

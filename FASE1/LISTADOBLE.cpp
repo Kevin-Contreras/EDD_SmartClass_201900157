@@ -338,7 +338,7 @@ void cambiarDatos(int idDat){
        
      }
      todos = "id "+to_string(idDat)+","+carnet+","+nombre+","+descripcion+","+materia+","+fecha+","+to_string(hora)+","+estado+",";
-      modificarNodo(todos,((mes-7)*30+(dia-1))*9+(hora-7));
+      modificarNodo(todos,(dia-1)+30*((hora-8)+9*(mes-7))+1);
       
        encontrado =true;
      }
