@@ -228,7 +228,7 @@ public:
           {
           case 1:
           cadenaToda="";
-           cadenaToda += to_string(++lecturaTarea.id);
+           
             cout<<"SE INGRESARON LOS DATOS DE LAS TAREAS"<<endl;
             cout<<"INGRESE EL MES: ";
             cin>>mes;
@@ -257,9 +257,9 @@ public:
             cout<<"INGRESE EL ESTADO: ";
             cin>>estado;
             cadenaToda +=estado+",";
-            lecturaTarea.id--;
+           
         
-          lecturaTarea.listadobleEnlazada.modificarNodo(cadenaToda,(dia-1)+30*((hora-8)+9*(mes-7))+1);
+          lecturaTarea.listadobleEnlazada.modificarNodo(to_string((dia-1)+30*((hora-8)+9*(mes-7)))+cadenaToda,(dia-1)+30*((hora-8)+9*(mes-7))+1);
            lecturaTarea.listadobleEnlazada.desplegar();
            cadenaToda="";
             break;
@@ -333,7 +333,7 @@ public:
             }
             archivoEstudiante<<"digraph G {rankdir=\"LR\";subgraph cluster_0 {style=filled;color=green;node [style=filled,color=white];"+m1+nosed2+"[dir=\"both\"];}}";
              archivoEstudiante.close();
-             string ruta2 = "dot -Tpng ESTUDIANTES"+to_string(contadorEstudiante)+".dot -o imagenEstudiante"+to_string(contadorEstudiante)+".png";
+             string ruta2 = "dot -Tsvg ESTUDIANTES"+to_string(contadorEstudiante)+".dot -o imagenEstudiante"+to_string(contadorEstudiante)+".svg";
             const char * comm2 = ruta2.c_str();
             system(comm2);
           }
@@ -363,7 +363,7 @@ public:
             lecturaTarea.listadobleEnlazada.conca="";
             archivoTAREA<<"digraph G {rankdir=\"LR\";subgraph cluster_0 {style=filled;color=blue;node [style=filled,color=white];"+m1+st+"[dir=\"both\"];}}";
              archivoTAREA.close();
-             string ruta3 = "dot -Tpng TAREAS"+to_string(contadorTareas)+".dot -o imagenTareas"+to_string(contadorTareas)+".png";
+             string ruta3 = "dot -Tsvg TAREAS"+to_string(contadorTareas)+".dot -o imagenTareas"+to_string(contadorTareas)+".svg";
             const char * comm3 = ruta3.c_str();
             system(comm3);
             lecturaTarea.listadobleEnlazada.conta=0;
@@ -509,7 +509,7 @@ public:
 
           archivoError<<"digraph G {rankdir=\"LR\";subgraph cluster_0 {style=filled;color=red;node [style=filled,color=white];"+m+nosed+";}}";
           archivoError.close();
-          ruta = "dot -Tpng error"+to_string(contadorError)+".dot -o imagenError"+to_string(contadorError)+".png";
+          ruta = "dot -Tsvg error"+to_string(contadorError)+".dot -o imagenError"+to_string(contadorError)+".svg";
           const char * comm = ruta.c_str();
          
             system(comm);

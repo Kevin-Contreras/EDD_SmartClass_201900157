@@ -111,7 +111,7 @@ class Leer{
           nodoLista.insertar("TYPO: ESTUDIANTE, EL DPI: "+dpivalor+" NO ESTA BIEN ESCRITO ID: "+ dpivalor );
           
         };
-        regex expReg("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+        regex expReg("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$");
         if(regex_match(correoValor,expReg)==true){
           
         }else{

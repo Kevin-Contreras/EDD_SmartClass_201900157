@@ -151,12 +151,14 @@ void eliminar(string idTarea){
   actual = primero1;
   bool encontrado = false;
   string nodoBuscado;
+  int contador3=0;
   int siono =0;
   if (primero1!=NULL)
   {
    while (actual!=NULL && encontrado !=true)
    {
-     if(actual->datok.find("id "+idTarea)!=-1){
+     contador3++;
+     if(contador3==stoi(idTarea)+1){
        cout<<"¿DESEA ELIMINAR LA TAREA  SI(1) NO(0)?"<<endl;
       cin>>siono;
       if(siono==1){
@@ -189,6 +191,7 @@ void cambiarDatos(int idDat){
   int mes;
   int dia;
   int hora;
+  int contador3=0;
   string carnet;
   string nombre;
   string descripcion;
@@ -206,7 +209,8 @@ void cambiarDatos(int idDat){
   {
    while (actual!=NULL && encontrado !=true)
    {
-     if(actual->datok.find("id "+to_string(idDat))!=-1){
+     contador3++;
+     if(contador3==idDat+1){
 
        stringstream  datobuscadoa(actual->datok);
         
@@ -344,7 +348,7 @@ void cambiarDatos(int idDat){
      }
       actual=actual->siguiente;
    }
-  
+  contador3=0;
    if(!encontrado){
      cout<<"nod no encontrado"<<endl;
    }

@@ -52,7 +52,7 @@ class LeerTarea{
           {
             if(to_string(i+7)+"/"+to_string(j+1)+"/"+to_string(k+8)==matrizFecha[l]){
               
-                datoss[i][j][k]=matrizDatos[l];
+                datoss[i][j][k]= matrizDatos[l];
                 contadorhora++;
             }else{
               sol++;
@@ -141,10 +141,13 @@ class LeerTarea{
       string hora2;
       //----------------
       string coma;
+      string nueva;
       fstream archivo;
       string fechaNueva;
       int contador2=0;
-      
+      int mes2=0;
+      int dia2=0;
+      int hora21=0;
       archivo.open(url, ios::in);
       if(archivo.fail()){
         cout<<""<<endl;
@@ -159,12 +162,18 @@ class LeerTarea{
           if(archivoCadena.find(archivoCadena2)!=-1){
              stringstream  streamTareas(archivoCadena);
              id++;
-             concatenar2 += "id "+to_string(id) +",";
+             
             while (getline(streamTareas,archivocadena4,',')){
                contador2++;
           if(contador2==1){
             mes += archivocadena4+",";
-            concatenar +=archivocadena4;
+            mes2=stoi(archivocadena4);
+            if(archivocadena4.substr(0,1)=="0"){
+              concatenar +=archivocadena4.substr(1,2);
+            }else{
+              concatenar +=archivocadena4;
+            }
+            
             if(stoi(archivocadena4)>6 && stoi(archivocadena4)<12 ){
               if(archivocadena4.length()==1){
                 fechaNueva+="0"+archivocadena4+"/";
@@ -186,7 +195,14 @@ class LeerTarea{
           }
           if(contador2==2){
             dia += archivocadena4+",";
-            concatenar +="/"+archivocadena4+"/";
+            dia2=stoi(archivocadena4);
+              if(archivocadena4.substr(0,1)=="0"){
+                
+              concatenar +="/"+archivocadena4.substr(1,2)+"/";
+            }else{
+              concatenar +="/"+archivocadena4+"/";
+            }
+            
             if(stoi(archivocadena4)<31 && stoi(archivocadena4)>0 ){
               if(archivocadena4.length()==1){
                 fechaNueva+="0"+archivocadena4;
@@ -210,7 +226,12 @@ class LeerTarea{
             
             hora += archivocadena4+",";
             hora2=archivocadena4;
-            concatenar +=archivocadena4+",";
+            hora21=stoi(archivocadena4);
+             if(archivocadena4.substr(0,1)=="0"){
+              concatenar +=archivocadena4.substr(1,2)+",";
+            }else{
+              concatenar +=archivocadena4+",";
+            }
             if(stoi(archivocadena4)>7 && stoi(archivocadena4)<17 ){
                  
             }else{
@@ -221,11 +242,12 @@ class LeerTarea{
           }
           if(contador2==4){
             carnet += archivocadena4+",";
+            concatenar2 +="id "+to_string((dia2-1)+30*((hora21-8)+9*(mes2-7)))+",";
             concatenar2 +=archivocadena4+",";
             if(archivocadena4.length()==9){
               
             }else{
-               cola.insertar("TYPO:TAREA, EL CARNET no tiene la cantidad de numero adecuada ERROR.en el id: "+ to_string(id));
+               cola.insertar("TYPO:TAREA, EL CARNET no tiene la cantidad de numero adecuada ERROR.en el id: "+ to_string((dia2-1)+30*((hora21-8)+9*(mes2-7))));
              
             }
             
@@ -271,7 +293,7 @@ class LeerTarea{
               
             }else{
               // ENVIAR EL ERROR EN UNA COLA MES
-              cola.insertar("TYPO:TAREA, la fecha no esta bien escrita.en el id: "+ to_string(id));
+              cola.insertar("TYPO:TAREA, la fecha no esta bien escrita.en el id: "+ to_string((dia2-1)+30*((hora21-8)+9*(mes2-7))));
               
             }
             fecha += archivocadena4+",";
@@ -279,6 +301,7 @@ class LeerTarea{
           if(contador2==9){
             concatenar2 +=archivocadena4+"-";
             estado += archivocadena4+",";
+            
           }
          
             }
@@ -293,6 +316,7 @@ class LeerTarea{
          
         
     }
+   
    static string datos [2]={concatenar2,concatenar};
     return datos;
    
