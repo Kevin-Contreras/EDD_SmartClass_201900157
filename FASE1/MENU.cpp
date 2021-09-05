@@ -321,7 +321,7 @@ public:
             for (int i = 1; i < lecturaEstudiantes.lista.indice(); i++)
             {
                 
-             m1+="a"+to_string(i)+"[ label ="+"\""+lecturaEstudiantes.lista.recorrer(i)+"\""+"]";
+             m1+="a"+to_string(i)+"[ label ="+"\""+"calificacion "+lecturaEstudiantes.lista.recorrer(i)+"\""+"]";
              if(i==1){
               m2+="a"+to_string(i);
              }
