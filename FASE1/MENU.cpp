@@ -321,7 +321,7 @@ public:
             for (int i = 1; i < lecturaEstudiantes.lista.indice(); i++)
             {
                 
-             m1+="a"+to_string(i)+"[ label ="+"\""+lecturaEstudiantes.lista.recorrer(i)+"\""+"]";
+             m1+="a"+to_string(i)+"[ label ="+"\""+"calificacion "+lecturaEstudiantes.lista.recorrer(i)+"\""+"]";
              if(i==1){
               m2+="a"+to_string(i);
              }
@@ -511,7 +511,6 @@ public:
           archivoError.close();
           ruta = "dot -Tsvg error"+to_string(contadorError)+".dot -o imagenError"+to_string(contadorError)+".svg";
           const char * comm = ruta.c_str();
-         
             system(comm);
         }
         

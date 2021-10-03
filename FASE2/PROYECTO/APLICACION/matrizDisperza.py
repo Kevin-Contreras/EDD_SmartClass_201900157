@@ -152,7 +152,11 @@ class matriz:
             f_actual = f_actual.siguiente
         if(trues==False):
             self.insertar(hora,dia,dato)
+<<<<<<< HEAD
             self.nuevo.cantidad
+=======
+            self.nuevo.cantidad=self.nuevo.cantidad-1
+>>>>>>> devFase2
 
     def recorreFilas(self):
         contador_filas = 1
