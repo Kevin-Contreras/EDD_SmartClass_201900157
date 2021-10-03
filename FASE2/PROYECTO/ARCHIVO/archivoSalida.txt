@@ -109,6 +109,15 @@
    ¿item Estado = "Incumplido" $?
 ¿$element?
 ¿element type="task"?
+   ¿item Carnet = "201901425" $?
+   ¿item Nombre = "Tarea de Fisica" $?
+   ¿item Descripcion = "Realizar la tarea del curso de Fisica 1" $?
+   ¿item Materia = "Fisica 1" $?
+   ¿item Fecha = "01/07/2021" $?
+   ¿item Hora = "8:00" $?
+   ¿item Estado = "Incumplido" $?
+¿$element?
+¿element type="task"?
    ¿item Carnet = "201704186" $?
    ¿item Nombre = "Tarea de Estadística" $?
    ¿item Descripcion = "Realizar la tarea del curso de Estadística 1." $?
@@ -136,10 +145,64 @@
    ¿item Estado = "Pendiente" $?
 ¿$element?
 ¿element type="task"?
+   ¿item Carnet = "201700886" $?
+   ¿item Nombre = "Codificar en JAVA" $?
+   ¿item Descripcion = "tareA DE KEVIN" $?
+   ¿item Materia = "COMPI" $?
+   ¿item Fecha = "14/07/2021" $?
+   ¿item Hora = "16:00" $?
+   ¿item Estado = "Pendiente" $?
+¿$element?
+¿element type="task"?
+   ¿item Carnet = "201700886" $?
+   ¿item Nombre = "Codificar en JAVA" $?
+   ¿item Descripcion = "tareA DE KEVIN" $?
+   ¿item Materia = "COMPI" $?
+   ¿item Fecha = "14/07/2021" $?
+   ¿item Hora = "16:00" $?
+   ¿item Estado = "Pendiente" $?
+¿$element?
+¿element type="task"?
+   ¿item Carnet = "201700886" $?
+   ¿item Nombre = "Codificar en JAVA" $?
+   ¿item Descripcion = "tareA DE KEVIN" $?
+   ¿item Materia = "COMPI" $?
+   ¿item Fecha = "14/07/2021" $?
+   ¿item Hora = "16:00" $?
+   ¿item Estado = "Pendiente" $?
+¿$element?
+¿element type="task"?
+   ¿item Carnet = "201700886" $?
+   ¿item Nombre = "Codificar en JAVA" $?
+   ¿item Descripcion = "tareA DE KEVIN" $?
+   ¿item Materia = "COMPI" $?
+   ¿item Fecha = "25/07/2021" $?
+   ¿item Hora = "13:00" $?
+   ¿item Estado = "Pendiente" $?
+¿$element?
+¿element type="task"?
+   ¿item Carnet = "201700886" $?
+   ¿item Nombre = "Codificar en C++" $?
+   ¿item Descripcion = "Realizar la tarea del curso de Estructuras de datos" $?
+   ¿item Materia = "Estructuras de Datos" $?
+   ¿item Fecha = "14/07/2021" $?
+   ¿item Hora = "15:00" $?
+   ¿item Estado = "Pendiente" $?
+¿$element?
+¿element type="task"?
    ¿item Carnet = "201901425" $?
    ¿item Nombre = "Tarea de Lógica" $?
    ¿item Descripcion = "Realizar el resumen del curso de Lógica." $?
    ¿item Materia = "Lógica" $?
+   ¿item Fecha = "04/05/2019" $?
+   ¿item Hora = "9:00" $?
+   ¿item Estado = "Pendiente" $?
+¿$element?
+¿element type="task"?
+   ¿item Carnet = "201901425" $?
+   ¿item Nombre = "Tarea de Química" $?
+   ¿item Descripcion = "Realizar el resumen del curso de Química." $?
+   ¿item Materia = "Química" $?
    ¿item Fecha = "04/05/2019" $?
    ¿item Hora = "9:00" $?
    ¿item Estado = "Pendiente" $?
@@ -185,7 +248,7 @@
    ¿item Nombre = "Proyecto de Lenguajes" $?
    ¿item Descripcion = "Realizar el proyecto del curso de Lenguajes" $?
    ¿item Materia = "Lenguajes Formales y de Programación" $?
-   ¿item Fecha = "21/10/2019" $?
+   ¿item Fecha = "21/12/2019" $?
    ¿item Hora = "13:00" $?
    ¿item Estado = "Pendiente" $?
 ¿$element?

@@ -1,204 +1,232 @@
+import os
 class Node:
-    def __init__(self, carnet,label,label2):
-        self.label = label
+    
+    def __init__(self, carnet,DatosNodo,DatosNodo2):
+        self.DatosNodo = DatosNodo
         self.carnet = carnet
-        self.label2=label2
-        self.parent = None
-        self.left = None
-        self.right = None
-        self.height = 0
+        self.DatosNodo2=DatosNodo2
+        self.para = None
+        self.izquierda = None
+        self.derecha = None
+        self.cll = 0
+        self.id=1;
+       
+     
 
   
-    def right(self):
-        return self.right
+    def derecha(self):
+        return self.derecha
 
     
-    def right(self, node):
+    def derecha(self, node):
         if node is not None:
-            node.parent = self
-            self.right = node
+            node.para = self
+            self.derecha = node
 
     
-    def left(self):
-        return self.left
+    def izquierda(self):
+        return self.izquierda
 
     
-    def left(self, node):
+    def izquierda(self, node):
         if node is not None:
-            node.parent = self
-            self.left = node
+            node.para = self
+            self.izquierda = node
 
     
-    def parent(self):
-        return self.parent
+    def para(self):
+        return self.para
 
     
-    def parent(self, node):
+    def para(self, node):
         if node is not None:
-            self.parent = node
-            self.height = self.parent.height + 1
+            self.para = node
+            self.cll = self.para.cll + 1
         else:
-            self.height = 0
+            self.cll = 0
 
-
+    def interno(self) :
+        eti="";
+        if(self.izquierda==None and self.derecha==None):
+            eti="nodo"+str(self.id)+" [ DatosNodo =\""+self.DatosNodo+", INGENIERIA"+"\"];\n";
+        else:
+            eti="nodo"+str(self.id)+" [ DatosNodo =\"<C0>|"+self.DatosNodo+", INGENIERIA|<C1>\"];\n";
+        
+        if(self.izquierda!=None):
+            eti=eti + self.izquierda.interno() +"nodo"+str(self.id)+":C0->nodo"+str(self.izquierda.id)+"\n";
+        
+        if(self.derecha!=None):
+            eti=eti + self.derecha.interno() +"nodo"+str(self.id)+":C1->nodo"+str(self.derecha.id)+"\n";                    
+        
+        return eti;
+    def graficarArbolAVL(self):
+        file = open("ArbolAVL.dot","w",encoding='utf-8')
+        file.write("digraph grafica{\n" +"rankdir=TB;\n" +"node [shape = record, style=filled];\n"+self.interno()+"}\n")
+        file.close()
+        
+        path_desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+        os.system('dot -Tsvg ArbolAVL.dot -o '+path_desktop+"/reportes_F2/ARBOLAVL.svg")
 class AVL:
 
     def __init__(self):
         self.root = None
-        self.size = 0
+        self.tamaño = 0
         self.carnet =0;
+        self.nodoNuevo2=None
+        self.nodoNuevo3=None
         self.carnetEliminar = 0;
+        
 
-    def insert(self, carnet,value,label2):
-        node = Node(carnet,value,label2)
-
+    def insert(self, carnet,value,DatosNodo2):
+        node = Node(carnet,value,DatosNodo2)
+        node.id=carnet
         if self.root is None:
             self.root = node
-            self.root.height = 0
-            self.size = 1
+            self.root.cll = 0
+            self.tamaño = 1
         else:
             dad_node = None
-            curr_node = self.root
+            nodoNuevo = self.root
 
             while True:
-                if curr_node is not None:
+                if nodoNuevo is not None:
 
-                    dad_node = curr_node
+                    dad_node = nodoNuevo
 
-                    if node.carnet < curr_node.carnet:
-                        curr_node = curr_node.left
+                    if node.carnet < nodoNuevo.carnet:
+                        nodoNuevo = nodoNuevo.izquierda
                     else:
-                        curr_node = curr_node.right
+                        nodoNuevo = nodoNuevo.derecha
                 else:
-                    node.height = dad_node.height
-                    dad_node.height += 1
+                    node.cll = dad_node.cll
+                    dad_node.cll += 1
                     if node.carnet < dad_node.carnet:
-                        dad_node.left = node
+                        dad_node.izquierda = node
                     else:
-                        dad_node.right = node
-                    self.rebalance(node)
-                    self.size += 1
+                        dad_node.derecha = node
+                    self.valance(node)
+                    self.tamaño += 1
                     break
 
-    def rebalance(self, node):
+    def valance(self, node):
         n = node
 
         while n is not None:
-            height_right = n.height
-            height_left = n.height
+            cll_derecha = n.cll
+            cll_izquierda = n.cll
 
-            if n.right is not None:
-                height_right = n.right.height
+            if n.derecha is not None:
+                cll_derecha = n.derecha.cll
 
-            if n.left is not None:
-                height_left = n.left.height
+            if n.izquierda is not None:
+                cll_izquierda = n.izquierda.cll
 
-            if abs(height_left - height_right) > 1:
-                if height_left > height_right:
-                    left_child = n.left
-                    if left_child is not None:
-                        h_right = (left_child.right.height
-                                    if (left_child.right is not None) else 0)
-                        h_left = (left_child.left.height
-                                    if (left_child.left is not None) else 0)
-                    if (h_left > h_right):
-                        self.rotate_left(n)
+            if abs(cll_izquierda - cll_derecha) > 1:
+                if cll_izquierda > cll_derecha:
+                    izquierda_child = n.izquierda
+                    if izquierda_child is not None:
+                        h_derecha = (izquierda_child.derecha.cll
+                                    if (izquierda_child.derecha is not None) else 0)
+                        h_izquierda = (izquierda_child.izquierda.cll
+                                    if (izquierda_child.izquierda is not None) else 0)
+                    if (h_izquierda > h_derecha):
+                        self.rotacionIzquierda(n)
                         break
                     else:
-                        self.double_rotate_right(n)
+                        self.DoblerotacionDerecha(n)
                         break
                 else:
-                    right_child = n.right
-                    if right_child is not None:
-                        h_right = (right_child.right.height
-                            if (right_child.right is not None) else 0)
-                        h_left = (right_child.left.height
-                            if (right_child.left is not None) else 0)
-                    if (h_left > h_right):
-                        self.double_rotate_left(n)
+                    derecha_child = n.derecha
+                    if derecha_child is not None:
+                        h_derecha = (derecha_child.derecha.cll
+                            if (derecha_child.derecha is not None) else 0)
+                        h_izquierda = (derecha_child.izquierda.cll
+                            if (derecha_child.izquierda is not None) else 0)
+                    if (h_izquierda > h_derecha):
+                        self.DoblerotacionIzquierda(n)
                         break
                     else:
-                        self.rotate_right(n)
+                        self.rotacionDerecha(n)
                         break
-            n = n.parent
+            n = n.para
 
-    def rotate_left(self, node):
-        aux = node.parent.label
-        node.parent.label = node.label
-        node.parent.right = Node(aux)
-        node.parent.right.height = node.parent.height + 1
-        node.parent.left = node.right
+    def rotacionIzquierda(self, node):
+        aux = node.para.DatosNodo
+        node.para.DatosNodo = node.DatosNodo
+        node.para.derecha = Node(aux)
+        node.para.derecha.cll = node.para.cll + 1
+        node.para.izquierda = node.derecha
 
 
-    def rotate_right(self, node):
-        aux = node.parent.label
-        node.parent.label = node.label
-        node.parent.left = Node(aux)
-        node.parent.left.height = node.parent.height + 1
-        node.parent.right = node.right
+    def rotacionDerecha(self, node):
+        aux = node.para.DatosNodo
+        node.para.DatosNodo = node.DatosNodo
+        node.para.izquierda = Node(aux)
+        node.para.izquierda.cll = node.para.cll + 1
+        node.para.derecha = node.derecha
 
-    def double_rotate_left(self, node):
-        self.rotate_right(node.getRight().getRight())
-        self.rotate_left(node)
+    def DoblerotacionIzquierda(self, node):
+        self.rotacionDerecha(node.getderecha().getderecha())
+        self.rotacionIzquierda(node)
 
-    def double_rotate_right(self, node):
-        self.rotate_left(node.getLeft().getLeft())
-        self.rotate_right(node)
+    def DoblerotacionDerecha(self, node):
+        self.rotacionIzquierda(node.getizquierda().getizquierda())
+        self.rotacionDerecha(node)
 
-    def empty(self):
+    def falsoVerda(self):
         if self.root is None:
             return True
         return False
 
-    def preShow(self, curr_node):
-        if curr_node is not None:
-            self.preShow(curr_node.left)
-            print(curr_node.label)
-            curr_node.label2.recorrer()
-            
-            self.preShow(curr_node.right)
-    def iterar(self, curr_node):
-      
-        if curr_node is not None:
+    def preShow(self, nodoNuevo):
+        if nodoNuevo is not None:
+            self.preShow(nodoNuevo.izquierda)
+            print(nodoNuevo.DatosNodo)
+            nodoNuevo.DatosNodo2.recorrer()
+            self.preShow(nodoNuevo.derecha)
+    def iterar(self, nodoNuevo):
+        
+        if nodoNuevo is not None:
           
           
-          self.iterar(curr_node.left)
+          self.iterar(nodoNuevo.izquierda)
           
-          if(curr_node.carnet == self.carnet):
-            print(curr_node.label)
-          self.iterar(curr_node.right)
+          if(nodoNuevo.carnet == self.carnet):
+            self.nodoNuevo2 =nodoNuevo.DatosNodo2
+            self.nodoNuevo3= nodoNuevo.DatosNodo
+            print(nodoNuevo.DatosNodo)
+          self.iterar(nodoNuevo.derecha)
           
-            
-
+    def actualizar(self, nodoNuevo,dato):
+        if nodoNuevo is not None:
+          self.actualizar(nodoNuevo.izquierda,dato)
+          
+          if(nodoNuevo.carnet == self.carnet):
            
-    def eliminar(self, curr_node):
-      if curr_node is not None:
-          
-          
-          self.eliminar(curr_node.left)
-          
-          if(curr_node.carnet == self.carnetEliminar):
-            print("nodo eliminado: "+str(curr_node.carnet ))
+            nodoNuevo.DatosNodo=dato
             
-          else:
-            print(curr_node)
-            self.rebalance(curr_node)
-          self.eliminar(curr_node.right)
-    def buscarEliminado(self,carnet):
-       
-           self.carnetEliminar = carnet
+            print(nodoNuevo.DatosNodo + "ESTA ES UNA PRUEBA PORNO")
+          self.actualizar(nodoNuevo.derecha,dato)       
+
     def buscar(self,carnet):
+       
+           self.carnet=carnet
+    def buscar2(self,carnet):
        
            self.carnet=carnet
   
             
-    def preorder(self, curr_node):
-        if curr_node is not None:
-            self.preShow(curr_node.left)
-            self.preShow(curr_node.right)
-            print(curr_node.label, end=" ")
+    def pre_orden(self, nodoNuevo):
+        if nodoNuevo is not None:
+            self.preShow(nodoNuevo.izquierda)
+            self.preShow(nodoNuevo.derecha)
+            print(nodoNuevo.DatosNodo, end=" ")
 
     def getRoot(self):
         return self.root
-
-
+    
+    def graficar(self):
+        self.root.graficarArbolAVL()
+    
+    
+ 

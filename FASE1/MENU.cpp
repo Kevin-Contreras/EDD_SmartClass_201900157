@@ -511,7 +511,6 @@ public:
           archivoError.close();
           ruta = "dot -Tsvg error"+to_string(contadorError)+".dot -o imagenError"+to_string(contadorError)+".svg";
           const char * comm = ruta.c_str();
-         
             system(comm);
         }
         

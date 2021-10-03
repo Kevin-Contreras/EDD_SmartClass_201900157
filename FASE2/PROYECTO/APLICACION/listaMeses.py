@@ -1,20 +1,26 @@
-import nodo;
+import NodoSemestre;
 class ListaDoble:
   def __init__(self):
     self.primero=None;
     self.ultimo=None;
-    self.mes=None
-    self.semestre=None
+    self.matriz =None
 
-  def insertar(self,dato,listaSemestres,meses):
-    nuevo = nodo.Nodo(dato,listaSemestres,meses)
+  def insertar(self,dato,dato2):
+    nuevo = NodoSemestre.Nodo(dato,dato2)
     if(self.primero ==None):
       self.primero = nuevo;
       self.ultimo =self.primero;
     else:
-      nuevo.atras = self.ultimo
-      self.ultimo.siguiente = nuevo
-      self.ultimo = nuevo 
+      aux=self.primero
+      ci =False
+      while(aux!=None):
+        if(aux.dato==nuevo.dato):
+          ci =True;
+        aux=aux.siguiente
+      if(ci==False):
+        nuevo.atras = self.ultimo
+        self.ultimo.siguiente = nuevo
+        self.ultimo = nuevo 
       
       
       
@@ -22,17 +28,16 @@ class ListaDoble:
       
       
   def eliminar(self,dato):
-      
       actual = self.primero
       eliminado =False;
       if(actual is None):
         eliminado =False;
       elif(actual.dato==dato):
         self.primero=actual.siguiente
-        self.primero.atras =None
+        self.primero.antras =None
         eliminado =True
       elif( self.ultimo.dato ==dato):
-        self.ultimo=self.ultimo.atras
+        self.ultimo=self.ultimo.antras
         self.ultimo.siguiente=None
         eliminado=True
       else:
@@ -42,58 +47,33 @@ class ListaDoble:
             actual.siguiente.atras = actual.atras
             eliminado=True
           actual =actual.siguiente
+      
 
+
+      
   def buscar(self,dato):
     aux = self.primero
     if(aux != None):
       while(aux!=None):
         
         if(dato==aux.dato):
-          return aux.semestres
-          
-        aux = aux.siguiente;
-    else:
-      print("la lista se encuentra vacia")
-  def buscarAo(self,dato):
-    aux = self.primero
-    if(aux != None):
-      while(aux!=None):
-        
-        if(dato==aux.dato):
-          self.semestre=aux.semestres
-          self.mes=aux.meses
+          self.matriz=aux.dato2;
           return aux.dato
-          
-        aux = aux.siguiente;
-    else:
-      print("la lista se encuentra vacia")
-  def buscarMeses(self,dato):
-    aux = self.primero
-    if(aux != None):
-      while(aux!=None):
         
-        if(dato==aux.meses.buscar(dato)):
-          return aux.meses
           
         aux = aux.siguiente;
     else:
       print("la lista se encuentra vacia")
-  
+
   def recorrer(self):
     aux = self.primero
     if(aux != None):
       while(aux!=None):
+        
+
+        aux.dato2.recorreFilas()
         print(aux.dato)
-        aux.semestres.recorrer()
-        aux.meses.recorrer()
-        aux = aux.siguiente;
-    else:
-      print("la lista se encuentra vacia")
-  def recorrerSemestre(self):
-    aux = self.primero
-    if(aux != None):
-      while(aux!=None):
-        aux.semestres.recorrer()
+        
         aux = aux.siguiente;
     else:
       print("la lista se encuentra vacia")  

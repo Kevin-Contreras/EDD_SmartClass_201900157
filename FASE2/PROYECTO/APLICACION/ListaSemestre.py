@@ -3,9 +3,10 @@ class ListaDoble:
   def __init__(self):
     self.primero=None;
     self.ultimo=None;
+    self.arbolCurso=None
 
-  def insertar(self,dato):
-    nuevo = NodoSemestre.Nodo(dato)
+  def insertar(self,dato,dato2):
+    nuevo = NodoSemestre.Nodo(dato,dato2)
     if(self.primero ==None):
       self.primero = nuevo;
       self.ultimo =self.primero;
@@ -43,13 +44,23 @@ class ListaDoble:
 
 
       
-
+  def buscar(self,dato):
+    aux = self.primero
+    if(aux != None):
+      while(aux!=None):
+        if(dato == aux.dato):
+          self.arbolCurso=aux.dato2
+          return aux.dato
+        aux = aux.siguiente;
+    else:
+      print("la lista se encuentra vacia")  
 
   def recorrer(self):
     aux = self.primero
     if(aux != None):
       while(aux!=None):
         print(aux.dato)
+        aux.dato2.print_tree(aux.dato2.root)
         aux = aux.siguiente;
     else:
       print("la lista se encuentra vacia")  

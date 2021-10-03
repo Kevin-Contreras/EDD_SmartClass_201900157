@@ -158,6 +158,27 @@
                                     "Creditos": 0,
                                     "Prerequisitos": "778,777,773,2025",
                                     "Obligatorio": true
+                                },
+                                {
+                                    "Codigo": "774",
+                                    "Nombre": "Sistemas de Bases de Datos 1",
+                                    "Creditos": 5,
+                                    "Prerequisitos": "773",
+                                    "Obligatorio": true
+                                },
+                                {
+                                    "Codigo": "281",
+                                    "Nombre": "Sistemas Operativos 1",
+                                    "Creditos": 4,
+                                    "Prerequisitos": "781,778",
+                                    "Obligatorio": true
+                                },
+                                {
+                                    "Codigo": "2036",
+                                    "Nombre": "Práctica Intermedia",
+                                    "Creditos": 0,
+                                    "Prerequisitos": "778,777,773,2025",
+                                    "Obligatorio": true
                                 }
                             ]
                         }
