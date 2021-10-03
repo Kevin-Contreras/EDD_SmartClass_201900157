@@ -45,7 +45,7 @@ class LecturaCurso:
                   self.cursoConta=0;
                   for cursos in semestre["Cursos"]:
                     
-                    B.insert((self.cursoConta,cursos["Codigo"]+"\n"+cursos["Nombre"]))
+                    B.insert((int(cursos["Codigo"]),cursos["Codigo"]+"\n"+cursos["Nombre"]))
                     self.cursoConta=self.cursoConta+1;
                   
                   listaSemen.insertar(semestre["Semestre"],B)
