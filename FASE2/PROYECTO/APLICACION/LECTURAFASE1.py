@@ -1,11 +1,23 @@
 
+import hashlib
+import json
+import Arbol
 
+from cryptography.fernet import Fernet
 class Archivo:
   
   def __init__(self):
     self.usuario ="";
     self.task ="";
     self.todo=""
+    self.clave=""
+    self.f=""
+    self.token=""
+    self.token2=""
+    self.claves=[]
+    self.contra=[]
+    self.correo=[]
+    self.avll=Arbol.AVL()
   def lectura(self,ruta,tipo):
     contador=0;
     contadorTarea=0;
@@ -85,6 +97,28 @@ class Archivo:
     
     return task.split("*")
         
-
+  def jsonEstudiante(self,dato):
+    datos = json.loads(dato)
+    for usuario in datos["estudiantes"]:
+      cadena = hashlib.sha256(bytes(usuario["password"], 'utf-8'))
+      str_cadena =cadena.hexdigest()
+      self.clave = Fernet.generate_key()
+      self.f = Fernet(self.clave)
+      self.token2 = self.f.encrypt(bytes(usuario["correo"], 'utf-8'))
+      self.token = self.f.encrypt(bytes(str_cadena, 'utf-8'))
+      self.avll.insert(usuario["carnet"],"carnet: "+str(usuario["carnet"])+" \n "+"DPI: "+str(usuario["DPI"])+" \n "+"nombre: "+usuario["nombre"]+" \n "+"carrera: "+usuario["carrera"]+" \n "+"correo: "+self.token2.decode("utf-8")+"\n" +"password: "+self.token.decode("utf-8")+" \n "+"edad: "+str(usuario["edad"]))
+      self.claves.append(self.f)
+      self.contra.append(self.token)
+      self.correo.append(self.token2)
+    self.avll.graficar()
+    self.decrypt()
+  def decrypt(self):
+    for dec in range(len(self.claves)):
+      
+      des = self.claves[dec].decrypt(self.correo[dec])
+      des2 = self.claves[dec].decrypt(self.contra[dec])
+      print(des)
+      print("------------------")
+      print(des2)
       
         

@@ -10,6 +10,26 @@
    ¿item Correo = "nicols36@hotmail.com" $?
 ¿$element?
 ¿element type="user"?
+   ¿item Carnet = "201210811" $?
+   ¿item DPI = "3502451230508" $?
+   ¿item Nombre = "Emilia Miramontes" $?
+   ¿item Carrera = "Ingeniería en Ciencias y Sistemas" $?
+   ¿item Password = "roxodiciqi" $?
+   ¿item Creditos = 205 $?
+   ¿item Edad = 21 $?
+   ¿item Correo = "nicols36@hotmail.com" $?
+¿$element?
+¿element type="user"?
+   ¿item Carnet = "201897987" $?
+   ¿item DPI = "3502451230508" $?
+   ¿item Nombre = "Emilia Miramontes" $?
+   ¿item Carrera = "Ingeniería en Ciencias y Sistemas" $?
+   ¿item Password = "roxodiciqi" $?
+   ¿item Creditos = 205 $?
+   ¿item Edad = 21 $?
+   ¿item Correo = "nicols36@hotmail.com" $?
+¿$element?
+¿element type="user"?
    ¿item Carnet = "201501786" $?
    ¿item DPI = "7249529279753" $?
    ¿item Nombre = "Juan Curiel" $?

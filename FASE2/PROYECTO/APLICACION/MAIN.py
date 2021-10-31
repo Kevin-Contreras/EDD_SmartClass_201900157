@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask,request,render_template
 from random import randrange
 import os
 import LECTURAFASE1
@@ -14,10 +14,32 @@ app = Flask(__name__)
 archivoFase1= LECTURAFASE1.Archivo()
 lecturaCurso = LecturaCurso.LecturaCurso()
 lecturaPen = lecturaPensum.LecturaPensum()
-
 path_desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
-os.mkdir(path_desktop+"/reportes_F2")
+os.mkdir(path_desktop+"/reportes_F3")
 
+
+@app.route("/login",methods=["POST"])
+def login():
+  if(request.method=="POST"):
+    dato = request.get_json()
+    if(dato["usuario"]=="admin" and dato["password"]=="admin"):
+      print(dato['usuario'])
+      return "admin"
+    else:
+       return dato["usuario"]
+@app.route("/pensum",methods=["POST"])
+def pen():
+  if(request.method == "POST"):
+    dato =  request.get_json();
+    print(dato)
+    lecturaPen.Pensum2(dato)
+    return "Se ha ingresado a la estructura de datos en el servidor"
+@app.route("/cargaUsuario",methods=["POST"])
+def user():
+  if(request.method == "POST"):
+    dato =  request.get_json();
+    archivoFase1.jsonEstudiante(dato)
+    return "Se ha ingresado a la estructura de datos en el servidor"
 @app.route("/carga",methods=["POST","GET"])
 def carga():
   if(request.method == "POST"):

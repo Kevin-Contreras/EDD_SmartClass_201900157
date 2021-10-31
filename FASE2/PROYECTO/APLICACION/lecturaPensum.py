@@ -12,3 +12,9 @@ class LecturaPensum:
           self.contador=self.contador+1
           self.arbol.insert((self.contador,curso["Codigo"]+curso["Nombre"]))
       self.arbol.print_tree(self.arbol.root)
+  def Pensum2(self,dato):
+        datos=json.loads(dato)
+        for curso in datos["Cursos"]:
+          self.contador=self.contador+1
+          self.arbol.insert((self.contador,curso["Codigo"]+curso["Nombre"]))
+        self.arbol.print_tree(self.arbol.root)

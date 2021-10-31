@@ -1,10 +1,9 @@
 import os
 class Node:
     
-    def __init__(self, carnet,DatosNodo,DatosNodo2):
+    def __init__(self, carnet,DatosNodo):
         self.DatosNodo = DatosNodo
         self.carnet = carnet
-        self.DatosNodo2=DatosNodo2
         self.para = None
         self.izquierda = None
         self.derecha = None
@@ -48,9 +47,9 @@ class Node:
     def interno(self) :
         eti="";
         if(self.izquierda==None and self.derecha==None):
-            eti="nodo"+str(self.id)+" [ DatosNodo =\""+self.DatosNodo+", INGENIERIA"+"\"];\n";
+            eti="nodo"+str(self.id)+" [ label =\""+self.DatosNodo+", INGENIERIA"+"\"];\n";
         else:
-            eti="nodo"+str(self.id)+" [ DatosNodo =\"<C0>|"+self.DatosNodo+", INGENIERIA|<C1>\"];\n";
+            eti="nodo"+str(self.id)+" [ label =\"<C0>|"+self.DatosNodo+", INGENIERIA|<C1>\"];\n";
         
         if(self.izquierda!=None):
             eti=eti + self.izquierda.interno() +"nodo"+str(self.id)+":C0->nodo"+str(self.izquierda.id)+"\n";
@@ -65,7 +64,7 @@ class Node:
         file.close()
         
         path_desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
-        os.system('dot -Tsvg ArbolAVL.dot -o '+path_desktop+"/reportes_F2/ARBOLAVL.svg")
+        os.system('dot -Tsvg ArbolAVL.dot -o '+path_desktop+"/reportes_F3/ARBOLAVL.svg")
 class AVL:
 
     def __init__(self):
@@ -77,8 +76,8 @@ class AVL:
         self.carnetEliminar = 0;
         
 
-    def insert(self, carnet,value,DatosNodo2):
-        node = Node(carnet,value,DatosNodo2)
+    def insert(self, carnet,value):
+        node = Node(carnet,value)
         node.id=carnet
         if self.root is None:
             self.root = node
@@ -182,7 +181,7 @@ class AVL:
         if nodoNuevo is not None:
             self.preShow(nodoNuevo.izquierda)
             print(nodoNuevo.DatosNodo)
-            nodoNuevo.DatosNodo2.recorrer()
+            
             self.preShow(nodoNuevo.derecha)
     def iterar(self, nodoNuevo):
         
@@ -192,7 +191,7 @@ class AVL:
           self.iterar(nodoNuevo.izquierda)
           
           if(nodoNuevo.carnet == self.carnet):
-            self.nodoNuevo2 =nodoNuevo.DatosNodo2
+            
             self.nodoNuevo3= nodoNuevo.DatosNodo
             print(nodoNuevo.DatosNodo)
           self.iterar(nodoNuevo.derecha)
