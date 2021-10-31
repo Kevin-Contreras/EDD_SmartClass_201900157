@@ -12,9 +12,33 @@
   width:  700px;
  
 }
+#pensum{
+  margin: 40px;
+  
+}
+#botonn{
+  position: relative;
+  left: 900px;
+  top: 20px;
+
+}
+#divImgenLogin3{
+  padding: 110px 100px;
+  left: 150px;
+  position: absolute;
+  overflow: hidden;
+  height: 600px;
+  width:  700px;
+ 
+}
+#imagen3{
+  width: 600px;
+  height: 500px;
+}
 #boton{
   margin-left: 175px;
 }
+
 #imagen{
 height: 700px;
 width: 100%;
@@ -34,6 +58,21 @@ transition: all 1s ease-in-out;
   width:  700px;
   margin-left: 1250px;
  
+}
+#cerrar{
+transition: all 1s ease-in-out;
+}
+#cerrar:hover{
+  color: red;
+}
+#botones{
+  width: 500px;
+  height: 500px;
+  margin: auto;
+  margin-top: 100px;
+}
+.botones{
+  margin: 10px;
 }
 #imagen2{
   height: 200px;
