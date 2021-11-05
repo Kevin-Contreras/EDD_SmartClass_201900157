@@ -1,14 +1,8 @@
 import react from 'react'
 import '../App.css'
 
-class NavAdmin extends react.Component{
-  re(){
-    alert("se crearon los reportes")
-    fetch("/reporteEstudiantes",{
-      method:"get",
-      headers: {'Content-Type': 'application/json'}
-    })
-  }
+class navUsuario extends react.Component{
+
 
     render(){
       return(
@@ -20,16 +14,16 @@ class NavAdmin extends react.Component{
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav me-auto">
         
-          <a class="navbar-brand  animate__animated animate__backInLeft" href="/admin">Carga<span class="visually-hidden">(current)</span></a>
+          <a class="navbar-brand  animate__animated animate__backInLeft" href="/user">TAREAS<span class="visually-hidden">(current)</span></a>
         
         <li class="nav-item">
           <a class="nav-link animate__animated animate__backInLeft" href="#">Blockchain</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link animate__animated animate__backInLeft" href="#">Reporte Apuntes Estudiantes</a>
+          <a class="nav-link animate__animated animate__backInLeft"  href="/user">Reporte Apuntes Estudiantes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link animate__animated animate__backInLeft" onClick={this.re} href="/admin">Reporte Estudiantes Registrados</a>
+          <a class="nav-link animate__animated animate__backInLeft"   href="/user">Reporte Estudiantes Registrados</a>
         </li>
         <li class="nav-item">
           <a class="nav-link animate__animated animate__backInLeft" href="#">Reporte Grafo de Prerrequisitos</a>
@@ -51,4 +45,4 @@ class NavAdmin extends react.Component{
     }
   
 }
-export default NavAdmin
+export default navUsuario

@@ -58,13 +58,13 @@ class Node:
             eti=eti + self.derecha.interno() +"nodo"+str(self.id)+":C1->nodo"+str(self.derecha.id)+"\n";                    
         
         return eti;
-    def graficarArbolAVL(self):
-        file = open("ArbolAVL.dot","w",encoding='utf-8')
+    def graficarArbolAVL(self,nombre):
+        file = open("ArbolAVL"+nombre+".dot","w",encoding='utf-8')
         file.write("digraph grafica{\n" +"rankdir=TB;\n" +"node [shape = record, style=filled];\n"+self.interno()+"}\n")
         file.close()
         
         path_desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
-        os.system('dot -Tsvg ArbolAVL.dot -o '+path_desktop+"/reportes_F3/ARBOLAVL.svg")
+        os.system('dot -Tsvg ArbolAVL'+nombre+'.dot -o '+path_desktop+"/reportes_F3/ARBOLAVL"+nombre+".svg")
 class AVL:
 
     def __init__(self):
@@ -74,6 +74,9 @@ class AVL:
         self.nodoNuevo2=None
         self.nodoNuevo3=None
         self.carnetEliminar = 0;
+        self.vare=False
+        self.arr=[]
+        self.da=""
         
 
     def insert(self, carnet,value):
@@ -196,16 +199,20 @@ class AVL:
             print(nodoNuevo.DatosNodo)
           self.iterar(nodoNuevo.derecha)
           
-    def actualizar(self, nodoNuevo,dato):
+    def actualizar(self, nodoNuevo,carnet,password):
         if nodoNuevo is not None:
-          self.actualizar(nodoNuevo.izquierda,dato)
-          
-          if(nodoNuevo.carnet == self.carnet):
+            self.actualizar(nodoNuevo.izquierda,carnet,password)
            
-            nodoNuevo.DatosNodo=dato
+            if(nodoNuevo.DatosNodo.split(" \n ",2)[0]+nodoNuevo.DatosNodo.split(" \n ",2)[1]=="carnet: "+str(carnet)+"password: "+str(password)):
+                
+                self.arr =  nodoNuevo.DatosNodo.split(" \n " )
+                for d in self.arr:
+                    print(self.arr[5])
             
-            print(nodoNuevo.DatosNodo + "ESTA ES UNA PRUEBA PORNO")
-          self.actualizar(nodoNuevo.derecha,dato)       
+                self.vare = True
+            
+            
+            self.actualizar(nodoNuevo.derecha,carnet,password)       
 
     def buscar(self,carnet):
        
@@ -224,8 +231,8 @@ class AVL:
     def getRoot(self):
         return self.root
     
-    def graficar(self):
-        self.root.graficarArbolAVL()
+    def graficar(self,nombre):
+        self.root.graficarArbolAVL(nombre)
     
     
  

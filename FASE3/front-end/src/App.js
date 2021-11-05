@@ -5,6 +5,8 @@ import Registro from './components/register'
 import Admin from './components/admin'
 import Pensum from './components/pensum'
 import CargaUsuario from './components/cargaUsuario'
+import InicioUsuarios from './components/usuario'
+
 import react from 'react'
 import {BrowserRouter as Router,Switch,Route,link} from 'react-router-dom';
 
@@ -20,8 +22,8 @@ class App extends react.Component{
           <Route path="/admin">
            <Admin/>
           </Route>
-          <Route path="/user/:id">
-           <Registro/>
+          <Route path="/user">
+           <InicioUsuarios/>
           </Route>
           <Route path="/pensum">
            <Pensum/>

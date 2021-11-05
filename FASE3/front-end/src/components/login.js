@@ -15,14 +15,19 @@ class Login extends react.Component{
       this.input=this.input.bind(this)
     }
     capturar(event){
-
+      
       fetch("/login",{
         method:'post',
         headers: {'Content-Type': 'application/json'},
         body:JSON.stringify(this.state)
-      }).then(response=> response.text()).then(dato=>{
-        if(dato!="admin"){
-        window.location.replace("/user/"+dato)
+      }).then(response=> response.json()).then(dato=>{
+        if(dato["admin"]!="admin"){
+          console.log(dato.length)
+          if(Object.keys(dato).length==1){
+              alert("NO SE ENCONTRO EL USUARIO")
+          }else{
+            window.location.replace("/user")
+          }
         }else{
           window.location.replace("/admin")
         }

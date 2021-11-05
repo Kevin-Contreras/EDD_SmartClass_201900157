@@ -1,4 +1,4 @@
-from flask import Flask,request,render_template
+from flask import Flask,request,render_template,jsonify
 from random import randrange
 import os
 import LECTURAFASE1
@@ -16,7 +16,7 @@ lecturaCurso = LecturaCurso.LecturaCurso()
 lecturaPen = lecturaPensum.LecturaPensum()
 path_desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
 os.mkdir(path_desktop+"/reportes_F3")
-
+nombre=""
 
 @app.route("/login",methods=["POST"])
 def login():
@@ -24,9 +24,26 @@ def login():
     dato = request.get_json()
     if(dato["usuario"]=="admin" and dato["password"]=="admin"):
       print(dato['usuario'])
-      return "admin"
+      return {"admin":"admin"}
     else:
-       return dato["usuario"]
+      nombre=archivoFase1.decrypt(dato["usuario"],dato["password"])
+      return  jsonify(nombre)
+@app.route("/usuario",methods=["GET"])
+def usuarioPrincipal():
+  if(request.method=="GET"):
+    print(archivoFase1.todo["nombre"])
+    return jsonify(archivoFase1.todo)
+@app.route("/reporteEstudiantes",methods=["GET"])
+def reporteEstudiante():
+  archivoFase1.avll.graficar("encrypt")
+  archivoFase1.avll2.graficar("decrypt")
+
+@app.route("/registro",methods=["POST"])
+def registro():
+  if(request.method=="POST"):
+    dato = request.get_json()
+    archivoFase1.insertar(dato)
+    return "hola"
 @app.route("/pensum",methods=["POST"])
 def pen():
   if(request.method == "POST"):
