@@ -20,23 +20,21 @@ class navUsuario extends react.Component{
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav me-auto">
         
-          <a class="navbar-brand  animate__animated animate__backInLeft" href="/user">TAREAS<span class="visually-hidden">(current)</span></a>
+          <a class="navbar-brand  animate__animated animate__backInLeft" href="/user">HOME<span class="visually-hidden">(current)</span></a>
         
         <li class="nav-item">
-          <a class="nav-link animate__animated animate__backInLeft" href="#">Blockchain</a>
+          <a class="nav-link animate__animated animate__backInLeft" href="#">Asignarse cursos del pensum</a>
         </li>
         <li class="nav-item">
           <a class="nav-link animate__animated animate__backInLeft" onClick={this.re2}  href="/user">Reporte Cursos Asignados</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link animate__animated animate__backInLeft"   href="/user">Reporte Estudiantes Registrados</a>
+          <a class="nav-link animate__animated animate__backInLeft"   href="/user">Reporte Cursos Previos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link animate__animated animate__backInLeft" href="#">Reporte Grafo de Prerrequisitos</a>
+          <a class="nav-link animate__animated animate__backInLeft" href="#">Realizar Apunte</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link animate__animated animate__backInLeft" href="#">Reporte Arbol Merkle</a>
-        </li>
+       
         <li class="nav-item dropdown">
           <a class="nav-link animate__animated animate__backInLeft" id="cerrar" data-bs-toggle="dropdown" href="/" role="button" aria-haspopup="true" >Sign off</a>
         </li>
