@@ -3,7 +3,13 @@ import '../App.css'
 
 class navUsuario extends react.Component{
 
-
+  re2(){
+    alert("se creo el reporte")
+    fetch("/mostrarCursos",{
+      method:"post",
+      headers: {'Content-Type': 'application/json'}
+    })
+  }
     render(){
       return(
         <div>
@@ -20,7 +26,7 @@ class navUsuario extends react.Component{
           <a class="nav-link animate__animated animate__backInLeft" href="#">Blockchain</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link animate__animated animate__backInLeft"  href="/user">Reporte Apuntes Estudiantes</a>
+          <a class="nav-link animate__animated animate__backInLeft" onClick={this.re2}  href="/user">Reporte Cursos Asignados</a>
         </li>
         <li class="nav-item">
           <a class="nav-link animate__animated animate__backInLeft"   href="/user">Reporte Estudiantes Registrados</a>

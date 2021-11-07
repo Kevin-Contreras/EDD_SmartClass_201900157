@@ -2,7 +2,7 @@
 import hashlib
 import json
 import Arbol
-
+import ListaTareas
 from cryptography.fernet import Fernet
 class Archivo:
   
@@ -20,6 +20,7 @@ class Archivo:
     self.comodin=False
     self.fase3Usuarios=""
     self.todo=""
+    self.carnet=""
     self.avll=Arbol.AVL()
     self.avll2=Arbol.AVL()
   def lectura(self,ruta,tipo):
@@ -121,6 +122,7 @@ class Archivo:
     
   def decrypt(self,carnet,password):
     if(self.comodin==True):
+      self.carnet = carnet
       contrase =hashlib.sha256(bytes(password, 'utf-8'))
       sha=contrase.hexdigest()
       contador=0
@@ -170,7 +172,20 @@ class Archivo:
     self.avll2.insert(int(datos["carnet"]),"carnet: "+datos["carnet"]+" \n "+"password: "+datos["password"]+" \n "+datos["dpi"]+" \n "+datos["nombre"]+" \n "+datos["carrera"]+" \n "+datos["correo"]+" \n "+datos["edad"]+" \n ")
 
 
+  def curso(self,curso):
+    listaCursos = ListaTareas.ListaDoble()
+    datosJson = json.loads(curso)
+    for estudiantes in datosJson["Estudiantes"]:
+        if(int(estudiantes["Carnet"])==int(self.carnet)):
+          for anios in estudiantes["Años"]:
+            for anio in anios["Semestres"]:
+              for cursosJson in anio["Cursos"]:
+                listaCursos.insertar(str("Año: "+ anios["Año"]+" Semestre: "+anio["Semestre"]+ " Nombre: "+cursosJson["Nombre"]+ " Creditos: "+str(cursosJson["Creditos"])))
+    listaCursos.graficar(self.carnet)
+
+
     
+
 
         
     

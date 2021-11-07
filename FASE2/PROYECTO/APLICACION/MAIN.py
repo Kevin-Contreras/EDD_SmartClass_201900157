@@ -9,14 +9,26 @@ import lecturaPensum
 import listaMeses
 import matrizDisperza
 import arbolB
+import cursosFase3
 
 app = Flask(__name__)
 archivoFase1= LECTURAFASE1.Archivo()
+cursos = cursosFase3.Curso()
 lecturaCurso = LecturaCurso.LecturaCurso()
 lecturaPen = lecturaPensum.LecturaPensum()
 path_desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
 os.mkdir(path_desktop+"/reportes_F3")
 nombre=""
+@app.route("/cargaCursos",methods=["POST"])
+def cargaCursos():
+  if(request.method=="POST"):
+    dato = request.get_json()
+    cursos.archivo = dato
+    return "SE CARGARON LOS DATOS"
+@app.route("/mostrarCursos",methods=["POST"])
+def cursosGuardar():
+  archivoFase1.curso(cursos.archivo)
+  return "SE GUARDO"
 
 @app.route("/login",methods=["POST"])
 def login():
@@ -27,6 +39,7 @@ def login():
       return {"admin":"admin"}
     else:
       nombre=archivoFase1.decrypt(dato["usuario"],dato["password"])
+
       return  jsonify(nombre)
 @app.route("/usuario",methods=["GET"])
 def usuarioPrincipal():
@@ -37,6 +50,7 @@ def usuarioPrincipal():
 def reporteEstudiante():
   archivoFase1.avll.graficar("encrypt")
   archivoFase1.avll2.graficar("decrypt")
+  return "SE CREARON LOS REPORTES"
 
 @app.route("/registro",methods=["POST"])
 def registro():

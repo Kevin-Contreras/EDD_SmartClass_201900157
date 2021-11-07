@@ -21,7 +21,10 @@ class Registro extends react.Component{
       fetch("/registro",{method:'post',
       headers: {'Content-Type': 'application/json'},
     body:JSON.stringify(this.state)})
+    this.setState({carnet:"",dpi:"",nombre:"",carrera:"",correo:"",password:"",edad:""})
     event.preventDefault()
+    window.location.replace("/login")
+    
     }
     form(event){
       if(event.target.name=="carnet"){
@@ -45,6 +48,8 @@ class Registro extends react.Component{
       if(event.target.name=="edad"){
         this.setState({edad:event.target.value})
       }
+     
+
 
     }
 

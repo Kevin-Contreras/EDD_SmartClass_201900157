@@ -6,6 +6,8 @@ import Admin from './components/admin'
 import Pensum from './components/pensum'
 import CargaUsuario from './components/cargaUsuario'
 import InicioUsuarios from './components/usuario'
+import Cargacursos from "./components/cargaCursos"
+import Apuntes from "./components/apuntes"
 
 import react from 'react'
 import {BrowserRouter as Router,Switch,Route,link} from 'react-router-dom';
@@ -30,6 +32,12 @@ class App extends react.Component{
           </Route>
           <Route path="/estudiantes">
            <CargaUsuario/>
+          </Route>
+          <Route path="/cursos">
+           <Cargacursos/>
+          </Route>
+          <Route path="/apuntes">
+           <Apuntes/>
           </Route>
            <Route path="/">
             <Login/>

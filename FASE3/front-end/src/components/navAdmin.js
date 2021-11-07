@@ -10,6 +10,7 @@ class NavAdmin extends react.Component{
     })
   }
 
+
     render(){
       return(
         <div>
@@ -32,8 +33,9 @@ class NavAdmin extends react.Component{
           <a class="nav-link animate__animated animate__backInLeft" onClick={this.re} href="/admin">Reporte Estudiantes Registrados</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link animate__animated animate__backInLeft" href="#">Reporte Grafo de Prerrequisitos</a>
+          <a class="nav-link animate__animated animate__backInLeft"  href="#">Reporte Grafo de Prerrequisitos</a>
         </li>
+      
         <li class="nav-item">
           <a class="nav-link animate__animated animate__backInLeft" href="#">Reporte Arbol Merkle</a>
         </li>

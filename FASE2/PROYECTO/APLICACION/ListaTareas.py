@@ -110,14 +110,14 @@ class ListaDoble:
 
         aux2 = aux2.siguiente;
       cadena=cadena+"1"+flecha
-      file = open("listaTarea.dot","w",encoding='utf-8')
+      file = open("cursos.dot","w",encoding='utf-8')
       file.write("digraph structs {rankdir=\"LR\"")
       file.write("node [shape=record];")
       file.write(cadena)
       file.write("}")
       file.close()
       path_desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
-      os.system('dot -Tsvg listaTarea.dot -o '+path_desktop+"/reportes_F2/TAREAS_"+str(comodin)+".svg")
+      os.system('dot -Tsvg cursos.dot -o '+path_desktop+"/reportes_F3/cursos_"+str(comodin)+".svg")
     else:
       print("la lista se encuentra vacia")
 
